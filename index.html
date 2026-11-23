@@ -1,0 +1,1004 @@
+<title>Aprendendo a Amidá</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Rubik:wght@400;500;600&display=swap">
+<style>
+/* Layout: uma coluna de livro, ~68ch, com páginas de bênção em blocos hebraico / transliteração / tradução */
+:root{
+  --bg:#f5f6f3; --paper:#ffffff; --ink:#1c2433; --muted:#5b6474; --line:#d9dde2;
+  --tchelet:#1f4e8c; --tchelet-soft:#e6edf7; --gold:#a5761f; --gold-soft:#f6efe0;
+  --heb:"Frank Ruhl Libre","Times New Roman",serif;
+  --body:"Literata",Georgia,serif;
+  --ui:"Rubik",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12161e; --paper:#1a2029; --ink:#e7e9ee; --muted:#9aa3b2; --line:#2e3644;
+  --tchelet:#86aee6; --tchelet-soft:#1d2a3d; --gold:#d9aa55; --gold-soft:#2c2618; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161e; --paper:#1a2029; --ink:#e7e9ee; --muted:#9aa3b2; --line:#2e3644;
+  --tchelet:#86aee6; --tchelet-soft:#1d2a3d; --gold:#d9aa55; --gold-soft:#2c2618; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.65}
+.wrap{max-width:46rem;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:2rem 4rem}
+h1,h2,h3{font-family:var(--ui);text-wrap:balance;line-height:1.2;font-weight:600}
+h2{font-size:1.6rem;margin:0 0 .25rem;color:var(--tchelet)}
+h3{font-size:1.1rem;margin:2rem 0 .5rem}
+p{margin:0 0 1rem}
+.eyebrow{font-family:var(--ui);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:500}
+section{border-top:1px solid var(--line);padding-block:2.5rem}
+.cover{text-align:left;padding-block:2rem 2.5rem}
+.cover .heb-title{font-family:var(--heb);font-size:3.4rem;line-height:1;color:var(--tchelet);direction:rtl;text-align:right;margin:0 0 1rem}
+.cover h1{font-size:2.4rem;margin:.25rem 0 .5rem}
+.cover .sub{color:var(--muted);font-size:1.05rem;max-width:36rem}
+.notice{background:var(--gold-soft);border-left:3px solid var(--gold);padding:1rem 1.25rem;margin:1.5rem 0;font-size:.95rem}
+.notice strong{font-family:var(--ui)}
+ol.toc{list-style:none;padding:0;margin:1rem 0;display:grid;gap:.4rem}
+ol.toc li{display:flex;gap:.75rem;align-items:baseline;padding:.45rem 0;border-bottom:1px dashed var(--line)}
+ol.toc .n{font-family:var(--ui);color:var(--muted);font-variant-numeric:tabular-nums;min-width:1.5rem}
+ol.toc .t{flex:1;min-width:0}
+ol.toc a{color:var(--ink)}
+.pill{font-family:var(--ui);font-size:.72rem;padding:.15rem .5rem;border-radius:99px;white-space:nowrap}
+.pill.ok{background:var(--tchelet-soft);color:var(--tchelet)}
+.pill.soon{color:var(--muted);border:1px solid var(--line)}
+table.tr{border-collapse:collapse;width:100%;font-size:.95rem;margin:.5rem 0 1rem}
+table.tr td{padding:.4rem .5rem;border-bottom:1px solid var(--line);vertical-align:top}
+table.tr td:first-child{font-family:var(--heb);font-size:1.3rem;width:4rem;text-align:center;direction:rtl}
+table.tr td:nth-child(2){font-family:var(--ui);font-weight:500;width:5rem}
+.scroll{overflow-x:auto}
+.quote{border-left:2px solid var(--tchelet);padding-left:1rem;margin:1rem 0;color:var(--ink)}
+.quote .src{display:block;font-family:var(--ui);font-size:.8rem;color:var(--muted);margin-top:.25rem}
+.heb{font-family:var(--heb);direction:rtl;text-align:right;font-size:1.65rem;line-height:1.9}
+.prayer{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:1.5rem 1.25rem;margin:1.25rem 0;display:grid;gap:1.1rem}
+.prayer .lbl{font-family:var(--ui);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.25rem}
+.translit{font-family:var(--ui);font-size:1.02rem;line-height:1.75;color:var(--tchelet)}
+.transl{font-style:italic}
+.var{font-size:.9rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:.75rem}
+.var .heb{font-size:1.3rem;line-height:1.7}
+.figure{margin:1.5rem 0;background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:1rem}
+.figure figcaption{font-family:var(--ui);font-size:.82rem;color:var(--muted);margin-top:.5rem}
+.figure svg{display:block;width:100%;height:auto}
+.steps{display:grid;gap:.75rem;counter-reset:s;padding:0;list-style:none}
+.steps li{display:grid;grid-template-columns:2rem 1fr;gap:.75rem;align-items:start}
+.steps li::before{counter-increment:s;content:counter(s);font-family:var(--ui);font-weight:600;color:var(--paper);background:var(--tchelet);border-radius:50%;width:1.8rem;height:1.8rem;display:grid;place-items:center;font-size:.9rem}
+.sources{font-size:.88rem;color:var(--muted)}
+.sources li{margin-bottom:.3rem}
+.bnav{display:flex;flex-wrap:wrap;gap:.35rem;margin:1rem 0 1.5rem}.bnav a{font-family:var(--ui);font-size:.85rem;min-width:2.1rem;text-align:center;padding:.3rem .5rem;border:1px solid var(--line);border-radius:4px;text-decoration:none;background:var(--paper);font-variant-numeric:tabular-nums}.bnav a:hover{border-color:var(--tchelet)}
+table.cal{border-collapse:collapse;width:100%;font-size:.92rem;margin:.75rem 0 1.25rem;min-width:30rem}
+table.cal th{font-family:var(--ui);font-weight:500;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:left;padding:.5rem;border-bottom:2px solid var(--line)}
+table.cal td{padding:.55rem .5rem;border-bottom:1px solid var(--line);vertical-align:top}
+table.cal td:last-child{font-family:var(--ui);font-size:.82rem;color:var(--muted);white-space:nowrap}
+ol.flow{padding-left:1.4rem;display:grid;gap:.3rem;margin:.5rem 0 1rem}
+ol.flow li.key{font-weight:600;color:var(--tchelet)}
+.heb .opt{color:var(--gold)}
+.mn{display:inline-block;vertical-align:middle;font-family:var(--ui);font-size:.68rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;padding:.12rem .5rem;border-radius:99px;background:var(--gold);color:var(--paper);white-space:nowrap;line-height:1.5}
+a{color:var(--tchelet)}
+a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@media (max-width:480px){.cover .heb-title{font-size:2.6rem}.cover h1{font-size:1.9rem}.heb{font-size:1.45rem}}
+</style>
+
+<div class="wrap">
+
+<header class="cover">
+  <p class="heb-title">תְּפִלַּת הָעֲמִידָה</p>
+  <div class="eyebrow">Livro de estudo · Nusach Edot HaMizrach</div>
+  <h1>Aprendendo a Amidá</h1>
+  <p class="sub">A oração central do judaísmo, bênção por bênção: texto hebraico, transliteração, tradução, origem e a forma correta de rezar.</p>
+  <div class="notice"><strong>Este livro contém o Nome de D'us em hebraico.</strong> Se você imprimir estas páginas, não as jogue no lixo comum. Guarde-as com respeito ou entregue-as à guenizá da sua sinagoga.</div>
+  <p style="font-size:.9rem;color:var(--muted)">Primeira edição completa, para revisão.</p>
+</header>
+
+<section id="sumario" aria-labelledby="h-sum">
+  <div class="eyebrow">Sumário</div>
+  <h2 id="h-sum">O caminho do livro</h2>
+  <ol class="toc">
+    <li><span class="n">0</span><span class="t"><a href="#leitura">Como ler as transliterações</a></span><span class="pill ok">Pronto</span></li>
+    <li><span class="n">1</span><span class="t"><a href="#cap1">O que é a Amidá e de onde ela vem</a></span><span class="pill ok">Pronto</span></li>
+    <li><span class="n">2</span><span class="t"><a href="#cap2">Como rezar: direção, os três passos, pés juntos, quando se curvar, rezar em voz baixa</a></span><span class="pill ok">Pronto</span></li>
+    <li><span class="n">3</span><span class="t"><a href="#cap3">As 19 bênçãos, uma a uma</a></span><span class="pill ok">Pronto</span></li>
+    <li><span class="n">4</span><span class="t"><a href="#cap4">Minian: os dez, a repetição do chazan, Kedushá e Birkat Cohanim</a></span><span class="pill ok">Pronto</span></li>
+    <li><span class="n">5</span><span class="t"><a href="#cap5">As rezas do dia: Shacharit, Minchá e Arvit, e onde a Amidá entra em cada uma</a></span><span class="pill ok">Pronto</span></li>
+    <li><span class="n">6</span><span class="t"><a href="#cap6">Variações: inverno e verão, Rosh Chodesh, Chol HaMoed, Chanucá, Purim, jejuns e os Dez Dias de Teshuvá</a></span><span class="pill ok">Pronto</span></li>
+    <li><span class="n">7</span><span class="t"><a href="#cap7">E se eu errar? O que repetir e o que não repetir</a></span><span class="pill ok">Pronto</span></li>
+    <li><span class="n">8</span><span class="t"><a href="#cap8">Shabat e festas: a Amidá de sete bênçãos e o Mussaf</a></span><span class="pill ok">Pronto</span></li>
+  </ol>
+</section>
+
+<section id="leitura" aria-labelledby="h-leit">
+  <div class="eyebrow">Antes de começar</div>
+  <h2 id="h-leit">Como ler as transliterações</h2>
+  <p>A transliteração segue a pronúncia israelense moderna, que é a usada na maioria das comunidades sefaradim e no Brasil. Leia como em português, com estas exceções:</p>
+  <div class="scroll"><table class="tr">
+    <tr><td>ח כ</td><td>ch</td><td>Som raspado na garganta, parecido com o "rr" carioca. <em>Chessed</em>, <em>baruch</em>.</td></tr>
+    <tr><td>ג</td><td>g / gu</td><td>Sempre duro, como em "gato". Por isso escrevemos <em>guibor</em>, e não "gibor".</td></tr>
+    <tr><td>צ</td><td>ts</td><td>Como em "tsé-tsé". <em>Tsion</em>, <em>Yits'chak</em>.</td></tr>
+    <tr><td>ש</td><td>sh</td><td>Como o "ch" de "chave". <em>Shalom</em>.</td></tr>
+    <tr><td>ע א</td><td>'</td><td>Uma pequena pausa entre as vogais. <em>Ya'akov</em>.</td></tr>
+    <tr><td>ְ</td><td>e</td><td>O <em>shevá</em> no início da palavra vira um "e" bem curto. <em>Berachá</em>.</td></tr>
+  </table></div>
+  <p>A maioria das palavras hebraicas tem a sílaba tônica no fim. Quando não tem, marcamos com acento: <em>Elohênu</em>, <em>mêlech</em>.</p>
+  <div class="notice"><strong>Marcação de minian.</strong> Os trechos com a etiqueta <span class="mn" title="Só se diz com minian">Só com minian</span> só são ditos quando há dez homens reunidos. Se você estiver rezando sozinho, pule-os. Todo o resto, inclusive a Amidá inteira em silêncio, você diz normalmente.</div>
+  <p>O Nome de quatro letras (<span class="heb" style="font-size:1.2rem">יְהֹוָה</span>) nunca é pronunciado como se escreve. Na reza, lê-se <strong>Adonai</strong>. Quando estiver só praticando, fora da reza, muitos dizem <strong>Hashem</strong> ou <strong>Ado-shem</strong> no lugar, para não dizer o Nome em vão.</p>
+</section>
+
+<section id="cap1" aria-labelledby="h-c1">
+  <div class="eyebrow">Capítulo 1</div>
+  <h2 id="h-c1">O que é a Amidá e de onde ela vem</h2>
+
+  <h3>Três nomes para a mesma reza</h3>
+  <p><strong>Amidá</strong> (עֲמִידָה) quer dizer "em pé", porque é rezada de pé, como quem está diante de um rei. <strong>Shemoné Esré</strong> (שְׁמוֹנֶה עֶשְׂרֵה) quer dizer "dezoito", o número original de bênçãos. No Talmud ela é chamada simplesmente de <strong>HaTefilá</strong>, "a Oração", porque é a reza por excelência. Quando os sábios dizem "quem reza", estão falando dela.</p>
+
+  <h3>A reza começa no coração</h3>
+  <p>A Torá manda servir a D'us "com todo o vosso coração" (Devarim 11:13). O Talmud pergunta qual é o serviço que se faz com o coração e responde: é a oração (Taanit 2a). O Rambam ensina que rezar todos os dias é um mandamento da Torá, e que no início cada pessoa rezava com as próprias palavras, conforme a sua capacidade (Hilchot Tefilá 1:1–3).</p>
+  <p>O modelo de como rezar vem de Chaná, mãe do profeta Shmuel. Ela rezava no Mishcan de Shilô e "só os seus lábios se moviam, mas a sua voz não se ouvia" (Shmuel I 1:13). Daí os sábios aprenderam a dizer a Amidá com os lábios, em voz baixa, com a intenção dirigida a D'us (Berachot 31a).</p>
+
+  <h3>Os patriarcas e o Templo</h3>
+  <p>O Talmud traz duas explicações para as três rezas diárias (Berachot 26b), e as duas são aceitas:</p>
+  <ul>
+    <li><strong>Os patriarcas instituíram as rezas.</strong> Avraham "levantou-se de manhã cedo" para rezar, o que deu origem a Shacharit (Bereshit 19:27). Yits'chak "saiu para meditar no campo" ao entardecer, e daí vem Minchá (24:63). Ya'akov "encontrou o lugar" à noite, e daí vem Arvit (28:11).</li>
+    <li><strong>As rezas correspondem aos sacrifícios diários do Templo.</strong> Shacharit corresponde ao <em>tamid</em> da manhã, e Minchá ao <em>tamid</em> da tarde. Arvit corresponde às partes do sacrifício que queimavam no altar durante a noite. Desde a destruição do Templo, "pagamos os novilhos com os nossos lábios" (Hoshea 14:3).</li>
+  </ul>
+
+  <h3>Quem escreveu o texto</h3>
+  <p>Depois do exílio da Babilônia, muitos judeus já não falavam bem o hebraico e não conseguiam formular os seus pedidos. Ezra e o seu tribunal, a <strong>Knesset HaGuedolá</strong> (a Grande Assembleia), que reunia 120 sábios e alguns profetas, fixaram então o texto e a ordem das dezoito bênçãos, para que todos pudessem rezar com palavras certas e completas (Meguilá 17b; Rambam, Hilchot Tefilá 1:4).</p>
+  <p>Séculos depois, após a destruição do Segundo Templo, Rabban Gamliel reuniu os sábios em Yavne. A pedido dele, Shmuel HaKatan compôs uma bênção contra os que traíam e caluniavam o povo de Israel, a <em>Birkat HaMinim</em> (Berachot 28b). Desde então a Shemoné Esré tem <strong>19 bênçãos</strong>, mas manteve o nome de "dezoito".</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 640 300" role="img" aria-labelledby="tl-t">
+      <title id="tl-t">Linha do tempo da Amidá, dos patriarcas ao Shulchan Aruch</title>
+      <line x1="40" y1="150" x2="600" y2="150" stroke="var(--line)" stroke-width="3"/>
+      <g font-family="Rubik, sans-serif" fill="var(--ink)" font-size="12">
+        <circle cx="60" cy="150" r="8" fill="var(--gold)"/>
+        <text x="60" y="118" text-anchor="middle" font-weight="600">Patriarcas</text>
+        <text x="60" y="186" text-anchor="middle" fill="var(--muted)">3 rezas</text>
+        <text x="60" y="201" text-anchor="middle" fill="var(--muted)">do dia</text>
+
+        <circle cx="170" cy="150" r="8" fill="var(--gold)"/>
+        <text x="170" y="103" text-anchor="middle" font-weight="600">1º Templo</text>
+        <text x="170" y="118" text-anchor="middle" fill="var(--muted)">sacrifícios</text>
+        <text x="170" y="186" text-anchor="middle" fill="var(--muted)">Chaná reza</text>
+        <text x="170" y="201" text-anchor="middle" fill="var(--muted)">em Shilô</text>
+
+        <circle cx="290" cy="150" r="11" fill="var(--tchelet)"/>
+        <text x="290" y="103" text-anchor="middle" font-weight="600">Knesset HaGuedolá</text>
+        <text x="290" y="118" text-anchor="middle" fill="var(--muted)">séc. V AEC</text>
+        <text x="290" y="186" text-anchor="middle" fill="var(--tchelet)" font-weight="600">18 bênçãos</text>
+        <text x="290" y="201" text-anchor="middle" fill="var(--muted)">com texto fixo</text>
+
+        <circle cx="410" cy="150" r="11" fill="var(--tchelet)"/>
+        <text x="410" y="103" text-anchor="middle" font-weight="600">Yavne</text>
+        <text x="410" y="118" text-anchor="middle" fill="var(--muted)">após 70 EC</text>
+        <text x="410" y="186" text-anchor="middle" fill="var(--tchelet)" font-weight="600">19ª bênção</text>
+        <text x="410" y="201" text-anchor="middle" fill="var(--muted)">Rabban Gamliel</text>
+
+        <circle cx="500" cy="150" r="8" fill="var(--gold)"/>
+        <text x="500" y="118" text-anchor="middle" font-weight="600">Rambam</text>
+        <text x="500" y="186" text-anchor="middle" fill="var(--muted)">séc. XII</text>
+
+        <circle cx="585" cy="150" r="8" fill="var(--gold)"/>
+        <text x="585" y="103" text-anchor="middle" font-weight="600">Shulchan</text>
+        <text x="585" y="118" text-anchor="middle" font-weight="600">Aruch</text>
+        <text x="585" y="186" text-anchor="middle" fill="var(--muted)">1565, Tsfat</text>
+        <text x="585" y="201" text-anchor="middle" fill="var(--muted)">R. Yossef Caro</text>
+      </g>
+    </svg>
+    <figcaption>O Shulchan Aruch, de Rabi Yossef Caro, é a principal base das leis de reza seguidas pelas comunidades sefaradim e orientais.</figcaption>
+  </figure>
+
+  <h3>A arquitetura da reza</h3>
+  <p>As bênçãos se dividem em três partes (Berachot 34a). O Talmud compara isso a um servo diante do seu senhor: primeiro ele elogia, depois faz os seus pedidos e, ao sair, agradece.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 640 210" role="img" aria-labelledby="st-t">
+      <title id="st-t">Estrutura da Amidá: 3 bênçãos de louvor, 13 de pedidos e 3 de agradecimento</title>
+      <g font-family="Rubik, sans-serif">
+        <rect x="20" y="40" width="120" height="70" rx="5" fill="var(--gold-soft)" stroke="var(--gold)"/>
+        <text x="80" y="70" text-anchor="middle" font-size="22" font-weight="600" fill="var(--gold)">3</text>
+        <text x="80" y="95" text-anchor="middle" font-size="13" fill="var(--ink)">Louvor</text>
+        <text x="80" y="135" text-anchor="middle" font-size="12" fill="var(--muted)">Shevach</text>
+        <text x="80" y="152" text-anchor="middle" font-size="11" fill="var(--muted)">bênçãos 1 a 3</text>
+
+        <rect x="155" y="40" width="330" height="70" rx="5" fill="var(--tchelet-soft)" stroke="var(--tchelet)"/>
+        <text x="320" y="70" text-anchor="middle" font-size="22" font-weight="600" fill="var(--tchelet)">13</text>
+        <text x="320" y="95" text-anchor="middle" font-size="13" fill="var(--ink)">Pedidos</text>
+        <text x="320" y="135" text-anchor="middle" font-size="12" fill="var(--muted)">Bakashot</text>
+        <text x="320" y="152" text-anchor="middle" font-size="11" fill="var(--muted)">bênçãos 4 a 16: sabedoria, perdão, cura, sustento, redenção</text>
+
+        <rect x="500" y="40" width="120" height="70" rx="5" fill="var(--gold-soft)" stroke="var(--gold)"/>
+        <text x="560" y="70" text-anchor="middle" font-size="22" font-weight="600" fill="var(--gold)">3</text>
+        <text x="560" y="95" text-anchor="middle" font-size="13" fill="var(--ink)">Agradecimento</text>
+        <text x="560" y="135" text-anchor="middle" font-size="12" fill="var(--muted)">Hodaá</text>
+        <text x="560" y="152" text-anchor="middle" font-size="11" fill="var(--muted)">bênçãos 17 a 19</text>
+
+        <text x="320" y="190" text-anchor="middle" font-size="12" fill="var(--muted)">No Shabat e nas festas, os 13 pedidos dão lugar a uma única bênção sobre a santidade do dia.</text>
+      </g>
+    </svg>
+    <figcaption>Os pedidos são feitos no plural ("cura-nos", "perdoa-nos"). Quem reza a Amidá pede por todo o povo de Israel, não só por si.</figcaption>
+  </figure>
+</section>
+
+
+<section id="cap2" aria-labelledby="h-c2">
+  <div class="eyebrow">Capítulo 2</div>
+  <h2 id="h-c2">Como rezar: o corpo, a voz e a atenção</h2>
+  <p>A Amidá é a reza em que o judeu se coloca, de pé, diante do Rei. Por isso as leis sobre ela tratam não só das palavras, mas também da postura, da voz e da atenção. Este capítulo segue a ordem em que as coisas acontecem.</p>
+
+  <h3>Antes de começar</h3>
+  <ul>
+    <li><strong>Um lugar digno.</strong> Reza-se num lugar limpo, sem mau cheiro e, de preferência, na sinagoga. Quem reza em casa procura um canto fixo (Orach Chayim 90:19).</li>
+    <li><strong>Roupas apropriadas.</strong> Vestido como quem vai encontrar uma pessoa importante (Orach Chayim 91:5).</li>
+    <li><strong>A mente livre.</strong> Não se começa a Amidá com pressa, irritado ou precisando ir ao banheiro (Orach Chayim 92:1, 93:2).</li>
+    <li><strong>Em Shacharit, sem pausa.</strong> A bênção "Gaal Yisrael", que vem logo depois do Shemá, é ligada direto à Amidá, sem interrupção, nem mesmo para dizer "amen" (Orach Chayim 111:1). Isso se chama <em>semichat gueulá litfilá</em>: unir a redenção à oração.</li>
+  </ul>
+
+  <h3>A direção</h3>
+  <p>Fora de Israel, reza-se virado para a Terra de Israel. Em Israel, para Jerusalém. Em Jerusalém, para o lugar do Templo (Orach Chayim 94:1; Berachot 30a). No Brasil, isso significa rezar virado para o leste. Quem não sabe a direção, ou está num lugar onde não dá para virar, reza com o coração voltado para Jerusalém, e isso basta.</p>
+
+  <h3>A postura</h3>
+  <ul>
+    <li><strong>Três passos para a frente</strong> antes de começar, como quem se aproxima do rei. Quem não tem espaço pode dar passos pequenos.</li>
+    <li><strong>Os pés juntos</strong>, lado a lado, durante toda a reza, à semelhança dos anjos (Orach Chayim 95:1).</li>
+    <li><strong>Os olhos para baixo e o coração para cima</strong> (Yevamot 105b). Muitos rezam olhando o sidur, mesmo quem já sabe o texto, para não se distrair.</li>
+    <li><strong>As mãos sobre o coração</strong>, a direita sobre a esquerda, "como um servo diante do seu senhor" (Orach Chayim 95:3).</li>
+    <li><strong>Sem interromper.</strong> Não se fala, não se faz sinais e não se responde a ninguém durante a Amidá. Também não se passa na frente de quem está rezando, a uma distância de cerca de dois metros (Orach Chayim 102:4).</li>
+  </ul>
+
+  <h3>A voz</h3>
+  <p>Como Chaná, reza-se movendo os lábios e pronunciando cada palavra, alto o bastante para ouvir a própria voz, mas sem que os outros ouçam (Orach Chayim 101:2). Pensar as palavras sem dizê-las não basta.</p>
+
+  <h3>A atenção</h3>
+  <p>A <em>kavaná</em> tem dois níveis. O primeiro é entender o que se diz. O segundo é lembrar diante de Quem se está. O Shulchan Aruch descreve que os piedosos de antigamente se concentravam a ponto de sentir a presença de D'us (Orach Chayim 98:1). Quem está começando pode se concentrar de verdade numa bênção por dia, sempre a Avot, e depois ir acrescentando outras.</p>
+  <p>A Amidá pode ser dita em qualquer língua que a pessoa entenda (Orach Chayim 101:4). O ideal é em hebraico, e este livro existe para ajudar a chegar lá. Enquanto isso, não há problema em ler a tradução antes de cada bênção para saber o que se está dizendo.</p>
+
+  <h3>Quando curvar-se</h3>
+  <p>Curva-se em quatro momentos, nem mais nem menos (Orach Chayim 113:1):</p>
+  <figure class="figure">
+    <svg viewBox="0 0 640 170" role="img" aria-labelledby="bw-t">
+      <title id="bw-t">Os quatro momentos de curvar-se durante a Amidá</title>
+      <g font-family="Rubik, sans-serif">
+        <line x1="30" y1="70" x2="610" y2="70" stroke="var(--line)" stroke-width="3"/>
+        <rect x="30" y="58" width="90" height="24" rx="4" fill="var(--gold-soft)" stroke="var(--gold)"/>
+        <text x="75" y="75" text-anchor="middle" font-size="11" fill="var(--ink)">1 · Avot</text>
+        <rect x="490" y="58" width="120" height="24" rx="4" fill="var(--gold-soft)" stroke="var(--gold)"/>
+        <text x="550" y="75" text-anchor="middle" font-size="11" fill="var(--ink)">18 · Modim</text>
+        <g fill="var(--tchelet)">
+          <path d="M40 40 l10 14 l10 -14 z"/><path d="M100 40 l10 14 l10 -14 z"/>
+          <path d="M495 40 l10 14 l10 -14 z"/><path d="M590 40 l10 14 l10 -14 z"/>
+        </g>
+        <g font-size="11" text-anchor="middle" fill="var(--ink)">
+          <text x="50" y="30">início</text><text x="110" y="30">fim</text>
+          <text x="505" y="30">início</text><text x="600" y="30">fim</text>
+        </g>
+        <text x="305" y="75" text-anchor="middle" font-size="11" fill="var(--muted)">bênçãos 2 a 17: sem curvar-se</text>
+        <g font-size="12" fill="var(--muted)">
+          <text x="30" y="115">Em "Baruch": dobrar os joelhos. Em "atá": curvar o tronco.</text>
+          <text x="30" y="135">Antes de "Adonai": ficar ereto. Em Modim: curvar em "Modim" e endireitar antes do Nome.</text>
+          <text x="30" y="155">Não se curva no meio de outras bênçãos, para não parecer que se acrescenta algo à reza.</text>
+        </g>
+      </g>
+    </svg>
+    <figcaption>O Talmud ensina a se curvar de uma vez, "como uma vara", e a se levantar devagar, "como uma serpente", primeiro a cabeça e depois o corpo (Berachot 12b).</figcaption>
+  </figure>
+
+  <h3>Quem reza e quantas vezes</h3>
+  <p>O homem judeu adulto, a partir do bar mitsvá, reza a Amidá três vezes por dia: Shacharit, Minchá e Arvit. As mulheres também são obrigadas a rezar. Segundo a maioria dos poskim sefaradim, entre eles o Rav Ovadia Yossef, elas devem dizer ao menos uma Amidá por dia, em Shacharit ou em Minchá. Para detalhes, consulte o rabino da comunidade.</p>
+  <p>Os horários de cada reza e o que vem antes e depois da Amidá estão no capítulo 5.</p>
+</section>
+
+<section id="cap3" aria-labelledby="h-c3">
+  <div class="eyebrow">Capítulo 3</div>
+  <h2 id="h-c3">As 19 bênçãos, uma a uma</h2>
+  <p>Cada bênção traz o texto hebraico, a transliteração, a tradução e uma explicação. Os trechos que mudam conforme a época do ano aparecem logo abaixo do texto principal.</p>
+  <div class="notice"><strong>Rezando sozinho?</strong> Diga as 19 bênçãos inteiras, como estão. Na bênção 3, diga o texto "Atá kadosh" normalmente: a Kedushá do capítulo 4 só entra na repetição do chazan. Pule também o Modim deRabanan, a Birkat Cohanim e o Kadish.</div>
+  <nav class="bnav" aria-label="Ir para a bênção"><a href="#b1">1</a><a href="#b2">2</a><a href="#b3">3</a><a href="#b4">4</a><a href="#b5">5</a><a href="#b6">6</a><a href="#b7">7</a><a href="#b8">8</a><a href="#b9">9</a><a href="#b10">10</a><a href="#b11">11</a><a href="#b12">12</a><a href="#b13">13</a><a href="#b14">14</a><a href="#b15">15</a><a href="#b16">16</a><a href="#b17">17</a><a href="#b18">18</a><a href="#b19">19</a><a href="#b20">Fim</a></nav>
+  <h3 id="b1">Bênção 1 · Avot: os patriarcas</h3>
+  <p>Antes da primeira bênção, dá-se três passos para a frente, como quem se aproxima de um rei, e diz-se em voz baixa um versículo de Tehilim (51:17):</p>
+
+  <div class="prayer">
+    <div><div class="lbl">Hebraico</div><p class="heb">אֲדֹנָי שְׂפָתַי תִּפְתָּח, וּפִי יַגִּיד תְּהִלָּתֶךָ:</p></div>
+    <div><div class="lbl">Transliteração</div><p class="translit">Adonai sefatai tiftach, ufi yaguid tehilatêcha.</p></div>
+    <div><div class="lbl">Tradução</div><p class="transl">"Meu Senhor, abre os meus lábios, e a minha boca anunciará o Teu louvor."</p></div>
+  </div>
+
+  <h3>O texto</h3>
+  <div class="prayer">
+    <div><div class="lbl">Hebraico</div>
+      <p class="heb">בָּרוּךְ אַתָּה יְהֹוָה, אֱלֹהֵֽינוּ וֵֽאלֹהֵי אֲבוֹתֵֽינוּ, אֱלֹהֵי אַבְרָהָם, אֱלֹהֵי יִצְחָק, וֵֽאלֹהֵי יַעֲקֹב. הָאֵל הַגָּדוֹל הַגִּבּוֹר וְהַנּוֹרָא, אֵל עֶלְיוֹן, גּוֹמֵל חֲסָדִים טוֹבִים, קוֹנֵה הַכֹּל, וְזוֹכֵר חַסְדֵּי אָבוֹת, וּמֵבִיא גוֹאֵל לִבְנֵי בְנֵיהֶם לְמַֽעַן שְׁמוֹ בְּאַֽהֲבָה. מֶֽלֶךְ עוֹזֵר וּמוֹשִֽׁיעַ וּמָגֵן. בָּרוּךְ אַתָּה יְהֹוָה, מָגֵן אַבְרָהָם:</p></div>
+    <div><div class="lbl">Transliteração</div>
+      <p class="translit">Baruch atá Adonai, Elohênu vElohê avotênu, Elohê Avraham, Elohê Yits'chak, vElohê Ya'akov. HaEl hagadol haguibor vehanorá, El elyon, gomel chassadim tovim, konê hakol, vezocher chasdê avot, umevi goel livnê venehem lemáan shemo beahavá. Mêlech ozer umoshía umaguen. Baruch atá Adonai, maguen Avraham.</p></div>
+    <div><div class="lbl">Tradução</div>
+      <p class="transl">Bendito és Tu, Adonai, nosso D'us e D'us de nossos pais, D'us de Avraham, D'us de Yits'chak e D'us de Ya'akov. O D'us grande, poderoso e temível, D'us Altíssimo, que concede bondades verdadeiras e é Dono de tudo, que se lembra da bondade dos patriarcas e traz um redentor aos filhos de seus filhos, por amor ao Seu Nome. Rei que ajuda, salva e protege. Bendito és Tu, Adonai, Escudo de Avraham.</p></div>
+    <div class="var"><strong>Nos Dez Dias de Teshuvá</strong> (de Rosh Hashaná a Yom Kipur), acrescenta-se antes de "Mêlech ozer":
+      <p class="heb">זָכְרֵנוּ לְחַיִּים, מֶלֶךְ חָפֵץ בַּחַיִּים, כָּתְבֵנוּ בְּסֵפֶר חַיִּים, לְמַעַנָךְ אֱלֹהִים חַיִּים.</p>
+      <p class="translit" style="font-size:.95rem">Zochrênu lechayim, Mêlech chafets bachayim, kotvênu besêfer chayim, lemaanach Elohim chayim.</p>
+      <p class="transl" style="margin:0">"Lembra-Te de nós para a vida, Rei que deseja a vida; inscreve-nos no Livro da Vida, por Ti, D'us vivo."</p>
+    </div>
+  </div>
+
+  <h3>O que estamos dizendo</h3>
+  <p>A Amidá começa com a história do povo, antes de qualquer pedido. Dizemos "nosso D'us" e também "D'us de nossos pais": cada um precisa conhecer D'us por si, mas também herda a fé que veio de Avraham, Yits'chak e Ya'akov. O nome de cada patriarca é repetido separadamente porque cada um O conheceu do seu próprio jeito.</p>
+  <p>"Que se lembra da bondade dos patriarcas" é a base de toda a reza que vem depois. Pedimos não por mérito próprio, mas pela aliança feita com eles. A bênção fecha com "Escudo de Avraham", a promessa que D'us fez a Avraham: "Eu sou um escudo para ti" (Bereshit 15:1).</p>
+  <p>Esta é a bênção em que a <em>kavaná</em>, a atenção ao sentido das palavras, é mais importante. O Shulchan Aruch ensina que quem não teve nenhuma atenção nela deveria, em princípio, repetir a reza (Orach Chayim 101:1). Os sábios posteriores orientam que hoje não se repete, porque não há garantia de que a segunda vez sairá melhor. Por isso vale aprender esta bênção com calma, até entender cada palavra.</p>
+
+  <h3>Como se faz: o corpo também reza</h3>
+  <p>Na Avot curva-se duas vezes, no começo e no fim, cada vez que se diz "Baruch atá Adonai". No costume sefaradi a sequência é esta (Shulchan Aruch, Orach Chayim 113:7):</p>
+  <ol class="steps">
+    <li><span>Em <strong>"Baruch"</strong>, dobram-se os joelhos.</span></li>
+    <li><span>Em <strong>"atá"</strong>, curva-se o tronco para a frente.</span></li>
+    <li><span>Antes de <strong>"Adonai"</strong>, volta-se a ficar ereto. Diz-se o Nome de D'us de pé, porque "D'us endireita os que estão curvados" (Tehilim 146:8).</span></li>
+  </ol>
+
+  <figure class="figure">
+    <svg viewBox="0 0 640 220" role="img" aria-labelledby="ft-t">
+      <title id="ft-t">Pegadas mostrando os três passos para a frente e os pés juntos na posição da Amidá</title>
+      <defs>
+        <g id="foot"><ellipse cx="0" cy="0" rx="13" ry="26" /><circle cx="-6" cy="-34" r="4"/><circle cx="3" cy="-36" r="4"/><circle cx="10" cy="-31" r="3.5"/></g>
+      </defs>
+      <g fill="var(--muted)" opacity=".45">
+        <use href="#foot" transform="translate(70 150) rotate(90)"/>
+        <use href="#foot" transform="translate(70 110) rotate(90) scale(-1 1)"/>
+      </g>
+      <g fill="var(--tchelet)" opacity=".55">
+        <use href="#foot" transform="translate(190 150) rotate(90)"/>
+        <use href="#foot" transform="translate(290 110) rotate(90) scale(-1 1)"/>
+        <use href="#foot" transform="translate(390 150) rotate(90)"/>
+      </g>
+      <g fill="var(--tchelet)">
+        <use href="#foot" transform="translate(510 140) rotate(90)"/>
+        <use href="#foot" transform="translate(510 114) rotate(90) scale(-1 1)"/>
+      </g>
+      <g font-family="Rubik, sans-serif" font-size="12" text-anchor="middle">
+        <text x="70" y="200" fill="var(--muted)">Início</text>
+        <text x="190" y="200" fill="var(--ink)">1</text>
+        <text x="290" y="200" fill="var(--ink)">2</text>
+        <text x="390" y="200" fill="var(--ink)">3</text>
+        <text x="510" y="200" fill="var(--tchelet)" font-weight="600">Pés juntos</text>
+        <text x="600" y="132" fill="var(--gold)" font-weight="600">→</text>
+        <text x="600" y="60" fill="var(--gold)" font-weight="600">Jerusalém</text>
+        <text x="600" y="76" fill="var(--muted)">(no Brasil,</text>
+        <text x="600" y="91" fill="var(--muted)">para o leste)</text>
+      </g>
+    </svg>
+    <figcaption>Os pés ficam juntos durante toda a Amidá, como os anjos, de quem se diz que "as suas pernas eram uma perna reta" (Yechezkel 1:7; Berachot 10b).</figcaption>
+  </figure>
+</section>
+
+
+<section id="b2" aria-labelledby="h-b2">
+  <div class="eyebrow">Capítulo 3 · Bênção 2 de 19 · Louvor</div>
+  <h2 id="h-b2">Guevurot: o poder de D'us</h2>
+  
+  
+  <div class="prayer">
+    <div><div class="lbl">Hebraico</div><p class="heb">אַתָּה גִבּוֹר לְעוֹלָם אֲדֹנָי, מְחַיֶּה מֵתִים אַתָּה, רַב לְהוֹשִֽׁיעַ. מְכַלְכֵּל חַיִּים בְּחֶֽסֶד, מְחַיֵּה מֵתִים בְּרַֽחֲמִים רַבִּים, סוֹמֵךְ נֽוֹפְלִים, וְרוֹפֵא חוֹלִים, וּמַתִּיר אֲסוּרִים, וּמְקַיֵּם אֱמֽוּנָתוֹ לִֽישֵׁנֵי עָפָר. מִי כָמֽוֹךָ בַּֽעַל גְּבוּרוֹת, וּמִי דֽוֹמֶה לָךְ, מֶֽלֶךְ מֵמִית וּמְחַיֶּה וּמַצְמִֽיחַ יְשׁוּעָה. וְנֶֽאֱמָן אַתָּה לְהַֽחֲיוֹת מֵתִים. בָּרוּךְ אַתָּה יְהֹוָה, מְחַיֵּה הַמֵּתִים:</p></div>
+    <div><div class="lbl">Transliteração</div><p class="translit">Atá guibor leolam Adonai, mechayê metim atá, rav lehoshía. Mechalkel chayim bechessed, mechayê metim berachamim rabim, somech noflim, verofê cholim, umatir assurim, umekayem emunató lishenê afar. Mi chamocha báal guevurot, umi dome lach, Mêlech memit umechayê umatsmíach yeshuá. Veneeman atá lehachayot metim. Baruch atá Adonai, mechayê hametim.</p></div>
+    <div><div class="lbl">Tradução</div><p class="transl">Tu és poderoso para sempre, meu Senhor. Tu fazes reviver os mortos e és grande para salvar. Sustentas os vivos com bondade, fazes reviver os mortos com grande misericórdia, amparas os que caem, curas os doentes, libertas os presos e cumpres a Tua fidelidade aos que dormem no pó. Quem é como Tu, Senhor dos poderes, e quem se compara a Ti, Rei que faz morrer e faz viver e faz brotar a salvação? Tu és fiel para fazer reviver os mortos. Bendito és Tu, Adonai, que faz reviver os mortos.</p></div>
+    <div class="var"><strong>Depois de "rav lehoshía", conforme a estação:</strong> no verão de Israel (de Pesach até Shemini Atsêret) diz-se o orvalho; no inverno de Israel (de Shemini Atsêret até Pesach) diz-se o vento e a chuva.
+      <p class="heb">בקיץ: מוֹרִיד הַטָּל · בחורף: מַשִּׁיב הָרֽוּחַ וּמוֹרִיד הַגֶּֽשֶׁם</p>
+      <p class="translit" style="font-size:.95rem">Verão: Morid hatal. · Inverno: Mashiv harúach umorid hagueshem.</p>
+      <p class="transl" style="margin:0">Verão: "Fazes descer o orvalho." Inverno: "Fazes soprar o vento e cair a chuva."</p>
+    </div>
+    <div class="var"><strong>Nos Dez Dias de Teshuvá,</strong> antes de "Veneeman atá":
+      <p class="heb">מִי כָמוֹךָ אָב הָרַחֲמָן, זוֹכֵר יְצוּרָיו בְּרַחֲמִים לְחַיִּים.</p>
+      <p class="translit" style="font-size:.95rem">Mi chamocha Av harachaman, zocher yetsurav berachamim lechayim.</p>
+      <p class="transl" style="margin:0">"Quem é como Tu, Pai misericordioso, que se lembra das Suas criaturas com misericórdia, para a vida."</p>
+    </div>
+  </div>
+  <h3>O que estamos dizendo</h3>
+  <p>Depois de lembrar a história (os patriarcas), lembramos o poder de D'us no presente: Ele sustenta, cura, levanta e liberta. A expressão "mechayê metim", que aparece cinco vezes, fala da ressurreição dos mortos no futuro. Ela é o 13º dos Treze Princípios de Fé do Rambam.</p><p>A menção da chuva é colocada aqui porque a chuva também "dá vida" ao mundo. O Talmud chama a chuva de "guevurot guechamim", o poder das chuvas (Taanit 2a). O calendário segue as estações de Israel, não as do Brasil. No costume sefaradi diz-se "Morid hatal" em todo o verão de Israel.</p>
+  
+</section>
+
+<section id="b3" aria-labelledby="h-b3">
+  <div class="eyebrow">Capítulo 3 · Bênção 3 de 19 · Louvor</div>
+  <h2 id="h-b3">Kedushat Hashem: a santidade de D'us</h2>
+  
+  
+  <div class="prayer">
+    <div><div class="lbl">Hebraico</div><p class="heb">אַתָּה קָדוֹשׁ וְשִׁמְךָ קָדוֹשׁ, וּקְדוֹשִׁים בְּכָל־יוֹם יְהַֽלְלֽוּךָ סֶּֽלָה. בָּרוּךְ אַתָּה יְהֹוָה, הָאֵל הַקָּדוֹשׁ:</p></div>
+    <div><div class="lbl">Transliteração</div><p class="translit">Atá kadosh veshimchá kadosh, ukdoshim bechol yom yehalelucha sela. Baruch atá Adonai, haEl hakadosh.</p></div>
+    <div><div class="lbl">Tradução</div><p class="transl">Tu és santo e o Teu Nome é santo, e os santos Te louvam todos os dias, para sempre. Bendito és Tu, Adonai, o D'us santo.</p></div>
+    <div class="var"><strong>Nos Dez Dias de Teshuvá</strong> o final muda para:
+      <p class="heb">הַמֶּלֶךְ הַקָּדוֹשׁ</p>
+      <p class="translit" style="font-size:.95rem">HaMêlech hakadosh.</p>
+      <p class="transl" style="margin:0">"O Rei santo." Quem esquece e diz "haEl hakadosh" nesses dias, e não se corrige logo, precisa recomeçar a Amidá (Shulchan Aruch, Orach Chayim 582:1).</p>
+    </div>
+  </div>
+  <h3>O que estamos dizendo</h3>
+  <p>"Santo" (kadosh) quer dizer separado, acima de tudo o que existe. É a última das três bênçãos de louvor.</p><p><span class="mn" title="Só se diz com minian">Só com minian</span> Quando há minian, na repetição do chazan, esta bênção é substituída pela Kedushá, que a congregação diz de pé, em voz alta, repetindo as palavras dos anjos nas visões de Yeshayahu e Yechezkel. Ela será explicada no capítulo 4.</p>
+  
+</section>
+
+<section id="b4" aria-labelledby="h-b4">
+  <div class="eyebrow">Capítulo 3 · Bênção 4 de 19 · Pedidos</div>
+  <h2 id="h-b4">Dáat: o entendimento</h2>
+  
+  
+  <div class="prayer">
+    <div><div class="lbl">Hebraico</div><p class="heb">אַתָּה חוֹנֵן לְאָדָם דַּֽעַת וּמְלַמֵּד לֶאֱנוֹשׁ בִּינָה. וְחָנֵּֽנוּ מֵאִתְּךָ חָכְמָה בִּינָה וָדָֽעַת. בָּרוּךְ אַתָּה יְהֹוָה, חוֹנֵן הַדָּֽעַת:</p></div>
+    <div><div class="lbl">Transliteração</div><p class="translit">Atá chonen leadam dáat umelamed leenosh biná. Vechonênu meitechá chochmá biná vadáat. Baruch atá Adonai, chonen hadáat.</p></div>
+    <div><div class="lbl">Tradução</div><p class="transl">Tu concedes ao homem o conhecimento e ensinas ao ser humano o entendimento. Concede-nos, de Ti, sabedoria, entendimento e conhecimento. Bendito és Tu, Adonai, que concede o conhecimento.</p></div>
+  </div>
+  <h3>O que estamos dizendo</h3>
+  <p>O primeiro pedido é por entendimento, porque sem ele não sabemos nem o que pedir. Também é a capacidade que distingue o ser humano dos animais.</p><p>Os três termos têm sentidos próximos, mas diferentes. Chochmá é aprender, biná é entender uma coisa a partir de outra, e dáat é a conclusão firme que guia a ação.</p><p>Na saída do Shabat, em Arvit, acrescenta-se aqui o trecho "Atá chonantánu", uma pequena Havdalá. Veja o capítulo 6.</p>
+  
+</section>
+
+<section id="b5" aria-labelledby="h-b5">
+  <div class="eyebrow">Capítulo 3 · Bênção 5 de 19 · Pedidos</div>
+  <h2 id="h-b5">Teshuvá: o retorno</h2>
+  
+  
+  <div class="prayer">
+    <div><div class="lbl">Hebraico</div><p class="heb">הֲשִׁיבֵֽנוּ אָבִֽינוּ לְתֽוֹרָתֶֽךָ, וְקָֽרְבֵֽנוּ מַלְכֵּֽנוּ לַֽעֲבֽוֹדָתֶֽךָ, וְהַֽחֲזִירֵֽנוּ בִּתְשׁוּבָה שְׁלֵמָה לְפָנֶֽיךָ. בָּרוּךְ אַתָּה יְהֹוָה, הָרוֹצֶה בִּתְשׁוּבָה:</p></div>
+    <div><div class="lbl">Transliteração</div><p class="translit">Hashivênu Avínu letoratêcha, vekarvênu Malkênu laavodatêcha, vehachazirênu bitshuvá shelemá lefanêcha. Baruch atá Adonai, harotsê bitshuvá.</p></div>
+    <div><div class="lbl">Tradução</div><p class="transl">Faze-nos voltar, nosso Pai, à Tua Torá, aproxima-nos, nosso Rei, do Teu serviço, e traze-nos de volta em teshuvá completa diante de Ti. Bendito és Tu, Adonai, que deseja a teshuvá.</p></div>
+  </div>
+  <h3>O que estamos dizendo</h3>
+  <p>Logo depois de pedir entendimento, pedimos para usá-lo bem: voltar à Torá. Aqui D'us é chamado de "Pai" e de "Rei". Como Pai, Ele ensina com paciência. Como Rei, Ele nos chama ao Seu serviço.</p><p>Teshuvá não é só arrependimento. A palavra vem de "voltar": retornar ao caminho certo, de onde a alma veio.</p>
+  
+</section>
+
+<section id="b6" aria-labelledby="h-b6">
+  <div class="eyebrow">Capítulo 3 · Bênção 6 de 19 · Pedidos</div>
+  <h2 id="h-b6">Selichá: o perdão</h2>
+  
+  
+  <div class="prayer">
+    <div><div class="lbl">Hebraico</div><p class="heb">סְלַח לָֽנוּ אָבִֽינוּ כִּי חָטָֽאנוּ, מְחוֹל לָֽנוּ מַלְכֵּֽנוּ כִּי פָשָֽׁעְנוּ, כִּי אֵל טוֹב וְסַלָּח אָֽתָּה. בָּרוּךְ אַתָּה יְהֹוָה, חַנּוּן הַמַּרְבֶּה לִסְלֹחַ:</p></div>
+    <div><div class="lbl">Transliteração</div><p class="translit">Selach lánu Avínu ki chatánu, mechol lánu Malkênu ki fashánu, ki El tov vesalach áta. Baruch atá Adonai, chanun hamarbê lisslóach.</p></div>
+    <div><div class="lbl">Tradução</div><p class="transl">Perdoa-nos, nosso Pai, porque pecamos; desculpa-nos, nosso Rei, porque transgredimos, pois Tu és D'us bom e que perdoa. Bendito és Tu, Adonai, misericordioso, que perdoa muitas vezes.</p></div>
+  </div>
+  <h3>O que estamos dizendo</h3>
+  <p>Depois da teshuvá vem o pedido de perdão. "Chet" é um erro sem intenção. "Pêsha" é uma transgressão consciente, e por isso pede-se primeiro ao Pai e depois ao Rei.</p><p>É costume bater de leve no peito, sobre o coração, com a mão direita fechada, ao dizer "chatánu" e "fashánu". O gesto lembra que os erros nascem dos desejos do coração.</p>
+  
+</section>
+
+<section id="b7" aria-labelledby="h-b7">
+  <div class="eyebrow">Capítulo 3 · Bênção 7 de 19 · Pedidos</div>
+  <h2 id="h-b7">Gueulá: a redenção</h2>
+  
+  
+  <div class="prayer">
+    <div><div class="lbl">Hebraico</div><p class="heb">רְאֵה נָא בְעָנְיֵֽנוּ, וְרִיבָֽה רִיבֵֽנוּ, וּמַהֵר לְגָאֳלֵֽנוּ גְאוּלָּה שְׁלֵמָה לְמַֽעַן שְׁמֶֽךָ, כִּי אֵל גּוֹאֵל חָזָק אָֽתָּה. בָּרוּךְ אַתָּה יְהֹוָה, גּוֹאֵל יִשְׂרָאֵל:</p></div>
+    <div><div class="lbl">Transliteração</div><p class="translit">Re'ê na veonyênu, verivá rivênu, umaher legoalênu gueulá shelemá lemáan shemêcha, ki El goel chazak áta. Baruch atá Adonai, goel Yisrael.</p></div>
+    <div><div class="lbl">Tradução</div><p class="transl">Vê, por favor, a nossa aflição, defende a nossa causa e apressa-Te em nos redimir com uma redenção completa, por amor ao Teu Nome, pois Tu és D'us redentor e forte. Bendito és Tu, Adonai, redentor de Israel.</p></div>
+  </div>
+  <h3>O que estamos dizendo</h3>
+  <p>Segundo o Talmud (Meguilá 17b), esta bênção fala das aflições do dia a dia de cada pessoa e do povo: perseguições, dificuldades e injustiças. A redenção final vem mais adiante, nas bênçãos 10 a 15.</p><p><span class="mn" title="Só se diz com minian">Só com minian</span> Nos jejuns públicos, na repetição do chazan, é aqui que ele acrescenta a bênção "Anênu". Veja o capítulo 6.</p>
+  
+</section>
+
+<section id="b8" aria-labelledby="h-b8">
+  <div class="eyebrow">Capítulo 3 · Bênção 8 de 19 · Pedidos</div>
+  <h2 id="h-b8">Refuá: a cura</h2>
+  
+  
+  <div class="prayer">
+    <div><div class="lbl">Hebraico</div><p class="heb">רְפָאֵֽנוּ יְהֹוָה וְנֵֽרָפֵא, הֽוֹשִׁיעֵֽנוּ וְנִוָּשֵֽׁעָה, כִּי תְהִלָּתֵֽנוּ אָֽתָּה, וְהַֽעֲלֵה אֲרוּכָה וּמַרְפֵּא לְכָל־תַּֽחֲלוּאֵֽינוּ וּלְכָל־מַכְאוֹבֵֽינוּ וּלְכָל־מַכּוֹתֵֽינוּ, כִּי אֵל רוֹפֵא רַחְמָן וְנֶֽאֱמָן אָֽתָּה. בָּרוּךְ אַתָּה יְהֹוָה, רוֹפֵא חוֹלֵי עַמּוֹ יִשְׂרָאֵל:</p></div>
+    <div><div class="lbl">Transliteração</div><p class="translit">Refaênu Adonai venerafê, hoshiênu venivashêa, ki tehilatênu áta, vehaalê aruchá umarpê lechol tachaluênu ulchol machovênu ulchol makotênu, ki El rofê rachaman veneeman áta. Baruch atá Adonai, rofê cholê amó Yisrael.</p></div>
+    <div><div class="lbl">Tradução</div><p class="transl">Cura-nos, Adonai, e seremos curados; salva-nos e seremos salvos, pois Tu és o nosso louvor. Traze alívio e cura para todas as nossas doenças, todas as nossas dores e todos os nossos ferimentos, pois Tu és D'us que cura, misericordioso e fiel. Bendito és Tu, Adonai, que cura os doentes do Seu povo Israel.</p></div>
+  </div>
+  <h3>O que estamos dizendo</h3>
+  <p>A abertura vem do profeta Yirmeyahu (17:14): "Cura-me, Adonai, e serei curado". Na Amidá, o pedido passa para o plural.</p><p>Aqui se pode acrescentar um pedido pessoal por alguém doente, antes de "ki El rofê" (Orach Chayim 119:1). Diz-se o nome hebraico da pessoa e o nome da mãe, por exemplo "David ben Sará" ou "Rachel bat Leá".</p>
+  
+</section>
+
+<section id="b9" aria-labelledby="h-b9">
+  <div class="eyebrow">Capítulo 3 · Bênção 9 de 19 · Pedidos</div>
+  <h2 id="h-b9">Birkat HaShanim: o sustento</h2>
+  <p>No nusach sefaradi esta bênção tem dois textos completos, um para o verão e outro para o inverno de Israel. Na Diáspora, o texto de inverno começa na reza de Arvit de 4 de dezembro (5 de dezembro no ano anterior a um ano bissexto) e vai até Pesach. Em 2026 isso cai daqui a poucos dias, na noite de 4 de dezembro.</p>
+  
+  <div class="prayer">
+    <div><div class="lbl">Hebraico</div><p class="heb">בָּֽרְכֵֽנוּ יְהֹוָה אֱלֹהֵֽינוּ בְּכָל־מַֽעֲשֵׂי יָדֵֽינוּ, וּבָרֵךְ שְׁנָתֵֽנוּ בְּטַֽלְלֵי רָצוֹן בְּרָכָה וּנְדָבָה, וּתְהִי אַֽחֲרִיתָהּ חַיִּים וְשָׂבָע וְשָׁלוֹם כַּשָּׁנִים הַטּוֹבוֹת לִבְרָכָה, כִּי אֵל טוֹב וּמֵטִיב אַתָּה וּמְבָרֵךְ הַשָּׁנִים. בָּרוּךְ אַתָּה יְהֹוָה, מְבָרֵךְ הַשָּׁנִים:</p></div>
+    <div><div class="lbl">Transliteração</div><p class="translit"><strong>Verão:</strong> Barechênu Adonai Elohênu bechol maassê yadênu, uvarech shenatênu betalelê ratson berachá unedavá, utehi acharitá chayim vessová veshalom kashanim hatovot livrachá, ki El tov umetiv atá umevarech hashanim. Baruch atá Adonai, mevarech hashanim.</p></div>
+    <div><div class="lbl">Tradução</div><p class="transl"><strong>Verão:</strong> Abençoa-nos, Adonai, nosso D'us, em todo o trabalho das nossas mãos, e abençoa o nosso ano com orvalhos de boa vontade, de bênção e generosidade. Que o seu fim seja vida, fartura e paz, como os anos bons, para bênção, pois Tu és D'us bom, que faz o bem e abençoa os anos. Bendito és Tu, Adonai, que abençoa os anos.</p></div>
+    <div class="var"><strong>Inverno de Israel (a partir de 4 de dezembro na Diáspora):</strong> diz-se este texto no lugar do anterior.
+      <p class="heb">בָּרֵךְ עָלֵֽינוּ יְהֹוָה אֱלֹהֵֽינוּ אֶת־הַשָּׁנָה הַזֹּאת וְאֶת־כָּל־מִינֵי תְּבוּאָתָהּ לְטוֹבָה, וְתֵן טַל וּמָטָר לִבְרָכָה עַל כָּל־פְּנֵי הָאֲדָמָה, וְרַוֵּה פְּנֵי תֵבֵל וְשַׂבַּע אֶת־הָעוֹלָם כֻּלּוֹ מִטּוּבָךְ, וּמַלֵּא יָדֵֽינוּ מִבִּרְכוֹתֶֽיךָ וּמֵעֹֽשֶׁר מַתְּנוֹת יָדֶֽיךָ. שָׁמְרָה וְהַצִּֽילָה שָׁנָה זוֹ מִכָּל־דָּבָר רָע, וּמִכָּל־מִינֵי מַשְׁחִית וּמִכָּל־מִינֵי פֻרְעָנוּת, וַעֲשֵׂה לָהּ תִּקְוָה טוֹבָה וְאַחֲרִית שָׁלוֹם. חוּס וְרַחֵם עָלֶֽיהָ וְעַל כָּל־תְּבוּאָתָהּ וּפֵירוֹתֶיהָ, וּבָֽרְכָֽהּ בְּגִשְׁמֵי רָצוֹן בְּרָכָה וּנְדָבָה, וּתְהִי אַחֲרִיתָהּ חַיִּים וְשָׂבָע וְשָׁלוֹם, כַּשָּׁנִים הַטּוֹבוֹת לִבְרָכָה, כִּי אֵל טוֹב וּמֵטִיב אַתָּה וּמְבָרֵךְ הַשָּׁנִים. בָּרוּךְ אַתָּה יְהֹוָה, מְבָרֵךְ הַשָּׁנִים:</p>
+      <p class="translit" style="font-size:.95rem">Barech alênu Adonai Elohênu et hashaná hazot veet kol minê tevuatá letová, veten tal umatar livrachá al kol penê haadamá, veravê penê tevel vessabá et haolam kulô mituvach, umalê yadênu mibirchotêcha umeósher matenot yadêcha. Shomrá vehatsilá shaná zo mikol davar ra, umikol minê mashchit umikol minê fur'anut, vaassê lah tikvá tová veacharit shalom. Chus verachem alêha veal kol tevuatá ufeirotêha, uvarchá beguishmê ratson berachá unedavá, utehi acharitá chayim vessová veshalom, kashanim hatovot livrachá, ki El tov umetiv atá umevarech hashanim. Baruch atá Adonai, mevarech hashanim.</p>
+      <p class="transl" style="margin:0">Abençoa para nós, Adonai, nosso D'us, este ano e todas as suas colheitas, para o bem, e dá orvalho e chuva para bênção sobre toda a face da terra. Rega a face do mundo e sacia o mundo inteiro com a Tua bondade; enche as nossas mãos com as Tuas bênçãos e com a riqueza dos presentes das Tuas mãos. Guarda e livra este ano de todo mal, de toda destruição e de toda calamidade, e dá-lhe boa esperança e um fim de paz. Tem compaixão e misericórdia dele, das suas colheitas e dos seus frutos, e abençoa-o com chuvas de boa vontade, de bênção e generosidade. Que o seu fim seja vida, fartura e paz, como os anos bons, para bênção, pois Tu és D'us bom, que faz o bem e abençoa os anos. Bendito és Tu, Adonai, que abençoa os anos.</p>
+    </div>
+  </div>
+  <h3>O que estamos dizendo</h3>
+  <p>Esta é a bênção do sustento: a colheita, o trabalho, o dinheiro para viver. Mesmo quem trabalha num escritório pede aqui pela sua parnassá, porque todo sustento vem de D'us.</p><p>O pedido de chuva segue o calendário de Israel, mesmo no Brasil, onde dezembro é verão. Se você tiver dúvida sobre a data na sua comunidade, pergunte ao rabino.</p>
+  
+</section>
+
+<section id="b10" aria-labelledby="h-b10">
+  <div class="eyebrow">Capítulo 3 · Bênção 10 de 19 · Pedidos</div>
+  <h2 id="h-b10">Kibuts Galuyot: a reunião dos exilados</h2>
+  
+  
+  <div class="prayer">
+    <div><div class="lbl">Hebraico</div><p class="heb">תְּקַע בְּשׁוֹפָר גָּדוֹל לְחֵֽרוּתֵֽנוּ, וְשָׂא נֵס לְקַבֵּץ גָּֽלֻיּוֹתֵֽינוּ, וְקַבְּצֵֽנוּ יַֽחַד מֵאַרְבַּע כַּנְפוֹת הָאָֽרֶץ לְאַרְצֵֽנוּ. בָּרוּךְ אַתָּה יְהֹוָה, מְקַבֵּץ נִדְחֵי עַמּוֹ יִשְׂרָאֵל:</p></div>
+    <div><div class="lbl">Transliteração</div><p class="translit">Teka beshofar gadol lecherutênu, vessá nes lekabets galuyotênu, vekabetsênu yáchad mearba kanfot haárets leartsênu. Baruch atá Adonai, mekabets nidchê amó Yisrael.</p></div>
+    <div><div class="lbl">Tradução</div><p class="transl">Toca o grande shofar pela nossa liberdade, ergue um estandarte para reunir os nossos exilados e reúne-nos, juntos, dos quatro cantos da terra para a nossa terra. Bendito és Tu, Adonai, que reúne os dispersos do Seu povo Israel.</p></div>
+  </div>
+  <h3>O que estamos dizendo</h3>
+  <p>Aqui começa a sequência da redenção final. A ordem das bênçãos 10 a 15 segue a ordem em que os sábios esperam que ela aconteça: os exilados voltam, os juízes justos voltam, o mal acaba, os justos são recompensados, Jerusalém é reconstruída e o reino de David é restabelecido (Meguilá 17b).</p><p>O "grande shofar" vem do profeta Yeshayahu (27:13).</p>
+  
+</section>
+
+<section id="b11" aria-labelledby="h-b11">
+  <div class="eyebrow">Capítulo 3 · Bênção 11 de 19 · Pedidos</div>
+  <h2 id="h-b11">Din: a justiça</h2>
+  
+  
+  <div class="prayer">
+    <div><div class="lbl">Hebraico</div><p class="heb">הָשִֽׁיבָה שֽׁוֹפְטֵֽינוּ כְּבָרִֽאשׁוֹנָה, וְיֽוֹעֲצֵֽינוּ כְּבַתְּחִלָּה, וְהָסֵר מִמֶּֽנּוּ יָגוֹן וַֽאֲנָחָה, וּמְלוֹךְ עָלֵֽינוּ מְהֵרָה אַתָּה יְהֹוָה לְבַדְּךָ, בְּחֶֽסֶד וּבְרַֽחֲמִים, בְּצֶֽדֶק וּבְמִשְׁפָּט. בָּרוּךְ אַתָּה יְהֹוָה, מֶֽלֶךְ אוֹהֵב צְדָקָה וּמִשְׁפָּט:</p></div>
+    <div><div class="lbl">Transliteração</div><p class="translit">Hashiva shofetênu kevarishoná, veyoatsênu kevatechilá, vehasser mimênu yagon vaanachá, umloch alênu mehera atá Adonai levadechá, bechessed uvrachamim, betsédek uvmishpat. Baruch atá Adonai, Mêlech ohev tsedaká umishpat.</p></div>
+    <div><div class="lbl">Tradução</div><p class="transl">Restaura os nossos juízes como antigamente e os nossos conselheiros como no princípio, e afasta de nós a tristeza e o suspiro. Reina sobre nós, em breve, Tu, Adonai, só Tu, com bondade e misericórdia, com retidão e justiça. Bendito és Tu, Adonai, Rei que ama a retidão e a justiça.</p></div>
+    <div class="var"><strong>Nos Dez Dias de Teshuvá</strong> o final muda para:
+      <p class="heb">הַמֶּלֶךְ הַמִּשְׁפָּט</p>
+      <p class="translit" style="font-size:.95rem">HaMêlech hamishpat.</p>
+      <p class="transl" style="margin:0">"O Rei do julgamento."</p>
+    </div>
+  </div>
+  <h3>O que estamos dizendo</h3>
+  <p>O versículo de abertura é de Yeshayahu (1:26). Pedimos a volta do Sanhedrin e de juízes que julguem pela Torá.</p><p>"Só Tu" é central: nenhum ser humano, por maior que seja, é rei no lugar de D'us. Os juízes apenas aplicam a Sua justiça.</p>
+  
+</section>
+
+<section id="b12" aria-labelledby="h-b12">
+  <div class="eyebrow">Capítulo 3 · Bênção 12 de 19 · Pedidos</div>
+  <h2 id="h-b12">Birkat HaMinim: contra os inimigos</h2>
+  
+  
+  <div class="prayer">
+    <div><div class="lbl">Hebraico</div><p class="heb">לַמִּינִים וְלַמַּלְשִׁינִים אַל־תְּהִי תִקְוָה, וְכָל־הַזֵּדִים כְּרֶֽגַע יֹאבֵֽדוּ, וְכָל־אֽוֹיְבֶֽיךָ וְכָל־שֽׂוֹנְאֶֽיךָ מְהֵרָה יִכָּרֵֽתוּ, וּמַלְכוּת הָֽרִשְׁעָה מְהֵרָה תְעַקֵּר וּתְשַׁבֵּר וּתְכַלֵּם וְתַכְנִיעֵם בִּמְהֵרָה בְיָמֵֽינוּ. בָּרוּךְ אַתָּה יְהֹוָה, שׁוֹבֵר אוֹיְבִים וּמַכְנִֽיעַ מִינִים:</p></div>
+    <div><div class="lbl">Transliteração</div><p class="translit">Lamminim velamalshinim al tehi tikvá, vechol hazedim kerega yovêdu, vechol oyevêcha vechol sonêcha mehera yikarêtu, umalchut harish'á mehera teaker uteshaber utechalem vetachniem bimherá veyamênu. Baruch atá Adonai, shover oyevim umachnía minim.</p></div>
+    <div><div class="lbl">Tradução</div><p class="transl">Que não haja esperança para os hereges e os delatores, que todos os arrogantes se percam num instante, que todos os Teus inimigos e os que Te odeiam sejam logo eliminados, e que o reino da maldade seja logo arrancado, quebrado, destruído e subjugado, em breve, em nossos dias. Bendito és Tu, Adonai, que quebra os inimigos e subjuga os hereges.</p></div>
+  </div>
+  <h3>O que estamos dizendo</h3>
+  <p>Esta é a 19ª bênção, composta em Yavne por Shmuel HaKatan (capítulo 1). Ela foi escrita numa época em que grupos que se afastaram do judaísmo denunciavam judeus às autoridades romanas.</p><p>O pedido não é contra pessoas por quem elas são, mas contra o mal que fazem. O Talmud conta que Bruria, esposa de Rabi Meir, ensinou que se deve pedir que "os pecados acabem", e não os pecadores, para que eles façam teshuvá (Berachot 10a).</p>
+  
+</section>
+
+<section id="b13" aria-labelledby="h-b13">
+  <div class="eyebrow">Capítulo 3 · Bênção 13 de 19 · Pedidos</div>
+  <h2 id="h-b13">Tsadikim: os justos</h2>
+  
+  
+  <div class="prayer">
+    <div><div class="lbl">Hebraico</div><p class="heb">עַל הַצַּדִּיקִים וְעַל הַֽחֲסִידִים, וְעַל שְׁאֵרִית עַמְּךָ בֵּית יִשְׂרָאֵל, וְעַל פְּלֵיטַת בֵּית סֽוֹפְרֵיהֶם, וְעַל גֵּרֵי הַצֶּֽדֶק וְעָלֵֽינוּ, יֶֽהֱמוּ נָא רַֽחֲמֶֽיךָ יְהֹוָה אֱלֹהֵֽינוּ, וְתֵן שָׂכָר טוֹב לְכָל־הַבּֽוֹטְחִים בְּשִׁמְךָ בֶּֽאֱמֶת, וְשִׂים חֶלְקֵֽנוּ עִמָּהֶם, וּלְעוֹלָם לֹא נֵבוֹשׁ כִּי בְךָ בָטָֽחְנוּ, וְעַל חַסְדְּךָ הַגָּדוֹל בֶּֽאֱמֶת נִשְׁעָֽנְנוּ. בָּרוּךְ אַתָּה יְהֹוָה, מִשְׁעָן וּמִבְטָח לַצַּדִּיקִים:</p></div>
+    <div><div class="lbl">Transliteração</div><p class="translit">Al hatsadikim veal hachassidim, veal sheerit amechá Bet Yisrael, veal peletat bet soferehem, veal guerê hatsédek vealênu, yehemu na rachamêcha Adonai Elohênu, veten sachar tov lechol habotechim beshimchá beemet, vessim chelkênu imahem, ulolam lo nevosh ki vechá batáchnu, veal chasdechá hagadol beemet nishánnu. Baruch atá Adonai, mishan umivtach latsadikim.</p></div>
+    <div><div class="lbl">Tradução</div><p class="transl">Pelos justos, pelos piedosos, pelo restante do Teu povo, a Casa de Israel, pelos que restam dos seus sábios, pelos convertidos sinceros e por nós, que se despertem as Tuas misericórdias, Adonai, nosso D'us. Dá boa recompensa a todos os que confiam verdadeiramente no Teu Nome, e coloca a nossa parte junto com eles. Nunca seremos envergonhados, pois em Ti confiamos e na Tua grande bondade verdadeiramente nos apoiamos. Bendito és Tu, Adonai, apoio e segurança dos justos.</p></div>
+  </div>
+  <h3>O que estamos dizendo</h3>
+  <p>Logo depois de pedir o fim do mal, pedimos pelos bons. A lista inclui os guerê hatsédek, os convertidos sinceros, que a Torá manda amar.</p><p>"E por nós": não nos colocamos entre os justos, mas pedimos para ter uma parte junto com eles.</p>
+  
+</section>
+
+<section id="b14" aria-labelledby="h-b14">
+  <div class="eyebrow">Capítulo 3 · Bênção 14 de 19 · Pedidos</div>
+  <h2 id="h-b14">Binyan Yerushaláyim: a reconstrução de Jerusalém</h2>
+  
+  
+  <div class="prayer">
+    <div><div class="lbl">Hebraico</div><p class="heb">תִּשְׁכּוֹן בְּתוֹךְ יְרוּשָׁלַֽיִם עִֽירְךָ כַּאֲשֶׁר דִּבַּֽרְתָּ, וְכִסֵּא דָוִד עַבְדְּךָ מְהֵרָה בְּתוֹכָהּ תָּכִין, וּבְנֵה אוֹתָהּ בִּנְיַן עוֹלָם בִּמְהֵרָה בְיָמֵֽינוּ. בָּרוּךְ אַתָּה יְהֹוָה, בּוֹנֵה יְרוּשָׁלָיִם:</p></div>
+    <div><div class="lbl">Transliteração</div><p class="translit">Tishkon betoch Yerushaláyim irechá kaasher dibárta, vechissê David avdechá mehera betochá tachin, uvnê otá binyan olam bimherá veyamênu. Baruch atá Adonai, bonê Yerushaláyim.</p></div>
+    <div><div class="lbl">Tradução</div><p class="transl">Habita no meio de Jerusalém, a Tua cidade, como prometeste, estabelece logo nela o trono de David, Teu servo, e reconstrói-a como construção eterna, em breve, em nossos dias. Bendito és Tu, Adonai, que reconstrói Jerusalém.</p></div>
+  </div>
+  <h3>O que estamos dizendo</h3>
+  <p>O texto sefaradi começa com "Tishkon", "habita". O texto ashkenazi começa com "Velirushaláyim irechá", "e para Jerusalém, Tua cidade". O sentido é o mesmo.</p><p>Quem reza está virado para Jerusalém, e esta bênção é o centro desse gesto. Em Tishá beAv acrescenta-se aqui o trecho "Nachem", de consolo pela destruição. Pergunte na sua comunidade se ele é dito só em Minchá ou em todas as rezas do dia, porque os costumes variam.</p>
+  
+</section>
+
+<section id="b15" aria-labelledby="h-b15">
+  <div class="eyebrow">Capítulo 3 · Bênção 15 de 19 · Pedidos</div>
+  <h2 id="h-b15">Malchut David: o reino de David</h2>
+  
+  
+  <div class="prayer">
+    <div><div class="lbl">Hebraico</div><p class="heb">אֶת צֶֽמַח דָּוִד עַבְדְּךָ מְהֵרָה תַצְמִֽיחַ, וְקַרְנוֹ תָּרוּם בִּישֽׁוּעָתֶֽךָ, כִּי לִֽישׁוּעָֽתְךָ קִוִּֽינוּ כָּל־הַיּוֹם. בָּרוּךְ אַתָּה יְהֹוָה, מַצְמִֽיחַ קֶֽרֶן יְשׁוּעָה:</p></div>
+    <div><div class="lbl">Transliteração</div><p class="translit">Et tsémach David avdechá mehera tatsmíach, vekarnó tarum bishuatêcha, ki lishuatechá kivínu kol hayom. Baruch atá Adonai, matsmíach kéren yeshuá.</p></div>
+    <div><div class="lbl">Tradução</div><p class="transl">Faze brotar logo o descendente de David, Teu servo, e eleva a sua força com a Tua salvação, pois pela Tua salvação esperamos o dia todo. Bendito és Tu, Adonai, que faz brotar a força da salvação.</p></div>
+  </div>
+  <h3>O que estamos dizendo</h3>
+  <p>"Tsémach David", o "broto de David", é uma expressão dos profetas (Yirmeyahu 23:5; Zecharyá 6:12) para o Mashíach. Segundo a tradição judaica, o Mashíach é um ser humano, rei da descendência de David, que vai reconstruir o Templo, reunir os exilados e trazer a observância da Torá ao mundo (Rambam, Hilchot Melachim 11:1–4).</p><p>"Esperamos o dia todo": esperar a redenção todos os dias é o 12º dos Treze Princípios de Fé do Rambam.</p>
+  
+</section>
+
+<section id="b16" aria-labelledby="h-b16">
+  <div class="eyebrow">Capítulo 3 · Bênção 16 de 19 · Pedidos</div>
+  <h2 id="h-b16">Shomêa Tefilá: D'us ouve a oração</h2>
+  
+  
+  <div class="prayer">
+    <div><div class="lbl">Hebraico</div><p class="heb">שְׁמַע קוֹלֵֽנוּ יְהֹוָה אֱלֹהֵֽינוּ, אָב הָרַֽחֲמָן, רַחֵם עָלֵֽינוּ, וְקַבֵּל בְּרַֽחֲמִים וּבְרָצוֹן אֶת־תְּפִלָּתֵֽנוּ, כִּי אֵל שׁוֹמֵֽעַ תְּפִלּוֹת וְתַֽחֲנוּנִים אָֽתָּה. וּמִלְּפָנֶֽיךָ מַלְכֵּֽנוּ רֵיקָם אַל־תְּשִׁיבֵֽנוּ, חָנֵּֽנוּ וַֽעֲנֵֽנוּ וּשְׁמַע תְּפִלָּתֵֽנוּ, כִּי אַתָּה שׁוֹמֵעַ תְּפִלַּת כָּל־פֶּה. בָּרוּךְ אַתָּה יְהֹוָה, שׁוֹמֵֽעַ תְּפִלָּה:</p></div>
+    <div><div class="lbl">Transliteração</div><p class="translit">Shemá kolênu Adonai Elohênu, Av harachaman, rachem alênu, vekabel berachamim uvratson et tefilatênu, ki El shomêa tefilot vetachanunim áta. Umilefanêcha Malkênu rekam al teshivênu, chonênu vaanênu ushmá tefilatênu, ki atá shomêa tefilat kol pe. Baruch atá Adonai, shomêa tefilá.</p></div>
+    <div><div class="lbl">Tradução</div><p class="transl">Ouve a nossa voz, Adonai, nosso D'us, Pai misericordioso, tem misericórdia de nós e recebe com misericórdia e boa vontade a nossa oração, pois Tu és D'us que ouve orações e súplicas. E da Tua presença, nosso Rei, não nos deixes voltar de mãos vazias; sê generoso conosco, responde-nos e ouve a nossa oração, pois Tu ouves a oração de toda boca. Bendito és Tu, Adonai, que ouve a oração.</p></div>
+  </div>
+  <h3>O que estamos dizendo</h3>
+  <p>Esta bênção fecha os pedidos e inclui tudo o que não foi pedido antes. Antes de "ki atá shomêa", cada pessoa pode acrescentar qualquer pedido pessoal, com as próprias palavras e em qualquer língua (Orach Chayim 119:1). É o lugar certo para pedir por trabalho, família, saúde ou um shiduch.</p><p>"Toda boca": D'us ouve a oração de qualquer pessoa, mesmo de quem não se acha digno.</p>
+  
+</section>
+
+<section id="b17" aria-labelledby="h-b17">
+  <div class="eyebrow">Capítulo 3 · Bênção 17 de 19 · Agradecimento</div>
+  <h2 id="h-b17">Avodá: o serviço do Templo</h2>
+  
+  
+  <div class="prayer">
+    <div><div class="lbl">Hebraico</div><p class="heb">רְצֵה יְהֹוָה אֱלֹהֵֽינוּ בְּעַמְּךָ יִשְׂרָאֵל וְלִתְפִלָּתָם שְׁעֵה, וְהָשֵׁב הָֽעֲבוֹדָה לִדְבִיר בֵּיתֶֽךָ, וְאִשֵּׁי יִשְׂרָאֵל וּתְפִלָּתָם מְהֵרָה בְּאַֽהֲבָה תְקַבֵּל בְּרָצוֹן, וּתְהִי לְרָצוֹן תָּמִיד עֲבוֹדַת יִשְׂרָאֵל עַמֶּֽךָ. וְאַתָּה בְּרַֽחֲמֶֽיךָ הָרַבִּים תַּחְפֹּץ בָּֽנוּ וְתִרְצֵֽנוּ, וְתֶֽחֱזֶֽינָה עֵינֵֽינוּ בְּשֽׁוּבְךָ לְצִיּוֹן בְּרַֽחֲמִים. בָּרוּךְ אַתָּה יְהֹוָה, הַמַּֽחֲזִיר שְׁכִֽינָתוֹ לְצִיּוֹן:</p></div>
+    <div><div class="lbl">Transliteração</div><p class="translit">Retsê Adonai Elohênu beamechá Yisrael velitfilatam she'ê, vehashev haavodá lidvir betêcha, veishê Yisrael utfilatam mehera beahavá tekabel beratson, utehi leratson tamid avodat Yisrael amêcha. Veatá berachamêcha harabim tachpots bánu vetirtsênu, vetechezêna enênu beshuvechá leTsion berachamim. Baruch atá Adonai, hamachazir shechinató leTsion.</p></div>
+    <div><div class="lbl">Tradução</div><p class="transl">Agrada-Te, Adonai, nosso D'us, do Teu povo Israel e volta-Te para a sua oração. Restaura o serviço ao santuário da Tua Casa, e recebe logo, com amor e boa vontade, as oferendas de Israel e a sua oração; que o serviço de Israel, Teu povo, Te agrade sempre. E Tu, na Tua grande misericórdia, deseja-nos e agrada-Te de nós, e que os nossos olhos vejam o Teu retorno a Tsion com misericórdia. Bendito és Tu, Adonai, que faz voltar a Sua Presença a Tsion.</p></div>
+    <div class="var"><strong>Em Rosh Chodesh e Chol HaMoed</strong> acrescenta-se aqui, antes de "Veatá berachamêcha", o trecho "Yaalê veyavô". O texto completo está no capítulo 6. Quem esquece em Shacharit ou Minchá precisa voltar a "Retsê"; em Arvit de Rosh Chodesh, não.
+      
+      
+      
+    </div>
+  </div>
+  <h3>O que estamos dizendo</h3>
+  <p>Esta é a primeira das três bênçãos finais. Pedimos que a nossa reza seja aceita como eram aceitos os sacrifícios, e que o serviço do Templo volte.</p><p>"Shechiná" é a Presença de D'us que repousava no Templo. Com o exílio, dizem os sábios, a Shechiná também foi para o exílio com o povo, e pedimos que ela volte a Tsion.</p>
+  
+</section>
+
+<section id="b18" aria-labelledby="h-b18">
+  <div class="eyebrow">Capítulo 3 · Bênção 18 de 19 · Agradecimento</div>
+  <h2 id="h-b18">Hodaá: o agradecimento (Modim)</h2>
+  
+  
+  <div class="prayer">
+    <div><div class="lbl">Hebraico</div><p class="heb">מוֹדִים אֲנַֽחְנוּ לָךְ, שֶׁאַתָּה הוּא יְהֹוָה אֱלֹהֵֽינוּ וֵֽאלֹהֵי אֲבוֹתֵֽינוּ לְעוֹלָם וָעֶד, צוּרֵֽנוּ צוּר חַיֵּֽינוּ וּמָגֵן יִשְׁעֵֽנוּ אַתָּה הוּא, לְדוֹר וָדוֹר נוֹדֶה לְךָ וּנְסַפֵּר תְּהִלָּתֶֽךָ, עַל חַיֵּֽינוּ הַמְּסוּרִים בְּיָדֶֽךָ, וְעַל נִשְׁמוֹתֵֽינוּ הַפְּקוּדוֹת לָךְ, וְעַל נִסֶּֽיךָ שֶׁבְּכָל־יוֹם עִמָּֽנוּ, וְעַל נִפְלְאוֹתֶֽיךָ וְטֽוֹבוֹתֶֽיךָ שֶׁבְּכָל־עֵת, עֶֽרֶב וָבֹֽקֶר וְצָֽהֳרָֽיִם. הַטּוֹב כִּי לֹא כָלוּ רַחֲמֶֽיךָ, הַמְּרַחֵם כִּי לֹא תַֽמּוּ חֲסָדֶֽיךָ, כִּי מֵֽעוֹלָם קִוִּֽינוּ לָךְ. וְעַל כֻּלָּם יִתְבָּרַךְ וְיִתְרוֹמָם וְיִתְנַשֵּׂא תָּמִיד שִׁמְךָ מַלְכֵּֽנוּ לְעוֹלָם וָעֶד, וְכָל־הַחַיִּים יוֹדֽוּךָ סֶּֽלָה, וִֽיהַֽלְלוּ וִֽיבָֽרְכוּ אֶת־שִׁמְךָ הַגָּדוֹל בֶּֽאֱמֶת לְעוֹלָם כִּי טוֹב, הָאֵל יְשֽׁוּעָתֵֽנוּ וְעֶזְרָתֵֽנוּ סֶֽלָה, הָאֵל הַטּוֹב. בָּרוּךְ אַתָּה יְהֹוָה, הַטּוֹב שִׁמְךָ וּלְךָ נָאֶה לְהוֹדוֹת:</p></div>
+    <div><div class="lbl">Transliteração</div><p class="translit">Modim anáchnu lach, sheatá hu Adonai Elohênu vElohê avotênu leolam vaed, tsurênu tsur chayênu umaguen yish'ênu atá hu, ledor vador nodê lechá unssaper tehilatêcha, al chayênu hamessurim beyadêcha, veal nishmotênu hapekudot lach, veal nissêcha shebechol yom imánu, veal nifleotêcha vetovotêcha shebechol et, érev vavóker vetsohoráyim. Hatov ki lo chalu rachamêcha, hamerachem ki lo tamu chassadêcha, ki meolam kivínu lach. Veal kulam yitbarach veyitromam veyitnassê tamid shimchá Malkênu leolam vaed, vechol hachayim yoducha sela, vihalelu vivarechu et shimchá hagadol beemet leolam ki tov, haEl yeshuatênu veezratênu sela, haEl hatov. Baruch atá Adonai, hatov shimchá ulchá naê lehodot.</p></div>
+    <div><div class="lbl">Tradução</div><p class="transl">Nós Te agradecemos, porque Tu és Adonai, nosso D'us e D'us de nossos pais, para sempre. Tu és a nossa Rocha, a Rocha da nossa vida e o Escudo da nossa salvação. De geração em geração Te agradeceremos e contaremos o Teu louvor: pelas nossas vidas, entregues em Tuas mãos; pelas nossas almas, confiadas a Ti; pelos Teus milagres, que estão conosco todos os dias; e pelas Tuas maravilhas e bondades de todo momento, à tarde, de manhã e ao meio-dia. Bom, porque a Tua misericórdia não se esgota; Misericordioso, porque a Tua bondade não acaba; desde sempre esperamos em Ti. E por tudo isso seja bendito, exaltado e elevado sempre o Teu Nome, nosso Rei, para sempre. Todos os viventes Te agradecerão e louvarão e bendirão o Teu grande Nome com verdade, para sempre, porque é bom. D'us, nossa salvação e nossa ajuda, o D'us bom. Bendito és Tu, Adonai, "o Bom" é o Teu Nome, e a Ti é próprio agradecer.</p></div>
+    <div class="var"><strong>Em Chanucá e Purim</strong> acrescenta-se antes de "Veal kulam" o trecho "Al hanissim". Veja o capítulo 6.
+      
+      
+      
+    </div>
+    <div class="var"><strong>Nos Dez Dias de Teshuvá,</strong> antes de "Vihalelu":
+      <p class="heb">וּכְתֹב לְחַיִּים טוֹבִים כָּל בְּנֵי בְרִיתֶךָ.</p>
+      <p class="translit" style="font-size:.95rem">Uchtov lechayim tovim kol benê veritêcha.</p>
+      <p class="transl" style="margin:0">"E inscreve para uma vida boa todos os filhos da Tua aliança."</p>
+    </div>
+  </div>
+  <h3>O que estamos dizendo</h3>
+  <p>"Modim" quer dizer ao mesmo tempo "agradecemos" e "reconhecemos". Agradecer é reconhecer que tudo vem de D'us, inclusive os "milagres de todo dia" que nem percebemos.</p><p>Aqui se curva de novo. No costume sefaradi, curva-se ao dizer "Modim" e volta-se a ficar ereto antes do Nome. No final, em "Baruch atá Adonai, hatov shimchá", curva-se como na Avot (Ben Ish Chai, Beshalach 21).</p><p><span class="mn" title="Só se diz com minian">Só com minian</span> Na repetição do chazan, enquanto ele diz Modim, a congregação diz uma versão própria, o "Modim deRabanan" (capítulo 4). Agradecer é a única coisa que ninguém pode fazer por outra pessoa.</p>
+  
+</section>
+
+<section id="b19" aria-labelledby="h-b19">
+  <div class="eyebrow">Capítulo 3 · Bênção 19 de 19 · Agradecimento</div>
+  <h2 id="h-b19">Shalom: a paz</h2>
+  
+  
+  <div class="prayer">
+    <div><div class="lbl">Hebraico</div><p class="heb">שִׂים שָׁלוֹם טוֹבָה וּבְרָכָה, חַיִּים חֵן וָחֶֽסֶד וְרַֽחֲמִים, עָלֵֽינוּ וְעַל כָּל־יִשְׂרָאֵל עַמֶּֽךָ. וּבָֽרְכֵֽנוּ אָבִֽינוּ כֻּלָּֽנוּ כְּאֶחָד בְּאוֹר פָּנֶֽיךָ, כִּי בְאוֹר פָּנֶֽיךָ נָתַֽתָּ לָּֽנוּ יְהֹוָה אֱלֹהֵֽינוּ תּוֹרָה וְחַיִּים, אַֽהֲבָה וָחֶֽסֶד, צְדָקָה וְרַֽחֲמִים, בְּרָכָה וְשָׁלוֹם. וְטוֹב בְּעֵינֶֽיךָ לְבָֽרְכֵֽנוּ וּלְבָרֵךְ אֶת־כָּל־עַמְּךָ יִשְׂרָאֵל, בְּרֹב עֹז וְשָׁלוֹם. בָּרוּךְ אַתָּה יְהֹוָה, הַמְּבָרֵךְ אֶת עַמּוֹ יִשְׂרָאֵל בַּשָּׁלוֹם, אָמֵן:</p></div>
+    <div><div class="lbl">Transliteração</div><p class="translit">Sim shalom tová uvrachá, chayim chen vachessed verachamim, alênu veal kol Yisrael amêcha. Uvarchênu Avínu kulánu keechad beor panêcha, ki veor panêcha natáta lánu Adonai Elohênu Torá vechayim, ahavá vachessed, tsedaká verachamim, berachá veshalom. Vetov beenêcha levarchênu ulvarech et kol amechá Yisrael berov oz veshalom. Baruch atá Adonai, hamevarech et amó Yisrael bashalom, amen.</p></div>
+    <div><div class="lbl">Tradução</div><p class="transl">Concede paz, bem e bênção, vida, graça, bondade e misericórdia a nós e a todo Israel, Teu povo. Abençoa-nos, nosso Pai, todos nós como um só, com a luz do Teu rosto, pois com a luz do Teu rosto nos deste, Adonai, nosso D'us, a Torá e a vida, amor e bondade, justiça e misericórdia, bênção e paz. Que seja bom aos Teus olhos abençoar-nos e abençoar todo o Teu povo Israel com muita força e paz. Bendito és Tu, Adonai, que abençoa o Seu povo Israel com a paz. Amen.</p></div>
+    <div class="var"><strong>Nos Dez Dias de Teshuvá</strong> acrescenta-se antes do final o trecho "Uvsêfer chayim", pedindo para ser inscrito no Livro da Vida.
+      
+      
+      
+    </div>
+  </div>
+  <h3>O que estamos dizendo</h3>
+  <p>A Amidá termina com a paz, porque, segundo os sábios, a paz é o recipiente que guarda todas as outras bênçãos (Mishná, Uktsin 3:12).</p><p>Esta bênção corresponde à Birkat Cohanim, a bênção dos sacerdotes, que termina com "e te dê a paz". <span class="mn" title="Só se diz com minian">Só com minian</span> Na repetição do chazan em Shacharit, os cohanim abençoam a congregação logo antes dela (capítulo 4).</p><p>No nusach sefaradi diz-se "Sim shalom" em todas as rezas. No nusach ashkenazi, em Minchá e Arvit diz-se "Shalom rav", um texto mais curto.</p>
+  
+</section>
+
+<section id="b20" aria-labelledby="h-b20">
+  <div class="eyebrow">Capítulo 3 · Encerramento</div>
+  <h2 id="h-b20">Elohai Netsor e os três passos para trás</h2>
+  <p>Depois das 19 bênçãos vem uma reza pessoal de encerramento, composta pelo sábio Mar bar Ravina (Berachot 17a). Começa e termina com o mesmo versículo de Tehilim (19:15).</p>
+  <div class="prayer">
+    <div><div class="lbl">Hebraico</div><p class="heb">יִֽהְיוּ לְרָצוֹן אִמְרֵי־פִי וְהֶגְיוֹן לִבִּי לְפָנֶיךָ, יְהֹוָה צוּרִי וְגֹאֲלִי:</p></div>
+    <div><div class="lbl">Transliteração</div><p class="translit">Yihyu leratson imrê fi vehegyon libi lefanêcha, Adonai tsuri vegoali.</p></div>
+    <div><div class="lbl">Tradução</div><p class="transl">"Que as palavras da minha boca e a meditação do meu coração sejam agradáveis diante de Ti, Adonai, minha Rocha e meu Redentor."</p></div>
+  </div>
+  <div class="prayer">
+    <div><div class="lbl">Hebraico</div><p class="heb">אֱלֹהַי, נְצֹר לְשׁוֹנִי מֵרָע וְשִׂפְתוֹתַי מִדַּבֵּר מִרְמָה, וְלִמְקַלְלַי נַפְשִׁי תִדֹּם, וְנַפְשִׁי כֶּֽעָפָר לַכֹּל תִּֽהְיֶה. פְּתַח לִבִּי בְּתוֹרָתֶֽךָ, וְאַחֲרֵי מִצְוֹתֶֽיךָ תִּרְדֹּף נַפְשִׁי. וְכָל־הַקָּמִים עָלַי לְרָעָה, מְהֵרָה הָפֵר עֲצָתָם וְקַלְקֵל מַחְשְׁבוֹתָם. יִֽהְיוּ כְּמֹץ לִפְנֵי־רוּחַ וּמַלְאַךְ יְהֹוָה דּוֹחֶה. קַבֵּל רִנַּת עַמֶּךָ, שַׂגְּבֵנוּ טַהֲרֵנוּ נוֹרָא. עֲשֵׂה לְמַֽעַן שְׁמָךְ, עֲשֵׂה לְמַֽעַן יְמִינָךְ, עֲשֵׂה לְמַֽעַן תּֽוֹרָתָךְ, עֲשֵׂה לְמַֽעַן קְדֻשָּׁתָךְ. לְמַעַן יֵחָלְצוּן יְדִידֶיךָ, הוֹשִׁיעָה יְמִינְךָ וַעֲנֵנִי. יִֽהְיוּ לְרָצוֹן אִמְרֵי־פִי וְהֶגְיוֹן לִבִּי לְפָנֶיךָ, יְהֹוָה צוּרִי וְגֹאֲלִי. עֹשֶׂה שָׁלוֹם בִּמְרוֹמָיו, הוּא בְּרַחֲמָיו יַעֲשֶׂה שָׁלוֹם עָלֵֽינוּ וְעַל כָּל־עַמּוֹ יִשְׂרָאֵל, וְאִמְרוּ אָמֵן:</p></div>
+    <div><div class="lbl">Transliteração</div><p class="translit">Elohai, netsor leshoni mera usfatotai midaber mirmá, velimkalelai nafshi tidom, venafshi keafar lakol tihyê. Petach libi betoratêcha, veacharê mitsvotêcha tirdof nafshi. Vechol hakamim alai leraá, mehera hafer atsatam vekalkel machshevotam. Yihyu kemots lifnê rúach umalach Adonai dochê. Kabel rinat amêcha, sagvênu taharênu norá. Assê lemáan shemach, assê lemáan yeminach, assê lemáan toratach, assê lemáan kedushatach. Lemáan yechaletsun yedidêcha, hoshía yeminechá vaanêni. Yihyu leratson imrê fi vehegyon libi lefanêcha, Adonai tsuri vegoali. Osé shalom bimromav, hu berachamav yaassê shalom alênu veal kol amó Yisrael, veimru amen.</p></div>
+    <div><div class="lbl">Tradução</div><p class="transl">Meu D'us, guarda a minha língua do mal e os meus lábios de falar mentira. Que a minha alma fique em silêncio diante dos que me ofendem, e que a minha alma seja como pó diante de todos. Abre o meu coração para a Tua Torá, e que a minha alma corra atrás dos Teus mandamentos. E todos os que se levantam contra mim para o mal, anula logo os seus planos e frustra os seus pensamentos. Que sejam como palha diante do vento, com o anjo de Adonai a empurrá-los. Recebe o canto do Teu povo; eleva-nos e purifica-nos, ó Temível. Faze-o por amor ao Teu Nome, faze-o por amor à Tua mão direita, faze-o por amor à Tua Torá, faze-o por amor à Tua santidade. Para que os Teus amados sejam salvos, salva com a Tua mão direita e responde-me. Que as palavras da minha boca e a meditação do meu coração sejam agradáveis diante de Ti, Adonai, minha Rocha e meu Redentor. Aquele que faz a paz nas Suas alturas, que Ele, na Sua misericórdia, faça a paz sobre nós e sobre todo o Seu povo Israel. E dizei: Amen.</p></div>
+    <div class="var"><strong>Nos Dez Dias de Teshuvá</strong> diz-se "Osé hashalom bimromav".
+      
+      
+      
+    </div>
+    <div class="var"><strong>Um costume sefaradi:</strong> antes do último "Yihyu leratson", diz-se um versículo do Tanach que começa com a primeira letra do seu nome hebraico e termina com a última. Por exemplo, para "Lemáan", o versículo de Tehilim 60:7, que está no texto acima. O rabino ou o sidur da sua comunidade pode indicar o versículo do seu nome.
+      
+      
+      
+    </div>
+    <div class="var"><strong>Depois de Osé shalom:</strong> 
+      <p class="heb">יְהִי רָצוֹן מִלְּפָנֶֽיךָ יְהֹוָה אֱלֹהֵֽינוּ וֵֽאלֹהֵי אֲבוֹתֵֽינוּ, שֶׁתִּבְנֶה בֵּית הַמִּקְדָשׁ בִּמְהֵרָה בְיָמֵֽינוּ, וְתֵן חֶלְקֵֽנוּ בְתוֹרָתָךְ לַעֲשׂוֹת חֻקֵּי רְצוֹנָךְ וּלְעָבְדָךְ בְּלֵבָב שָׁלֵם:</p>
+      <p class="translit" style="font-size:.95rem">Yehi ratson milefanêcha Adonai Elohênu vElohê avotênu, shetivnê Bet Hamikdash bimherá veyamênu, veten chelkênu betoratach laassot chukê retsonach ulovdach belevav shalem.</p>
+      <p class="transl" style="margin:0">"Que seja da Tua vontade, Adonai, nosso D'us e D'us de nossos pais, que construas o Templo em breve, em nossos dias, e nos dês a nossa parte na Tua Torá, para cumprir as leis da Tua vontade e servir-Te de todo o coração."</p>
+    </div>
+  </div>
+  <h3>O que estamos dizendo</h3>
+  <p>A primeira coisa que se pede depois da Amidá é guardar a língua. Os sábios ensinam que não adianta rezar bem e depois usar a mesma boca para falar mal dos outros.</p><p>Ao dizer "Osé shalom", dá-se três passos para trás, começando pelo pé esquerdo, como um servo que se despede do rei sem lhe dar as costas (Shulchan Aruch, Orach Chayim 123:1). Depois, ainda curvado, vira-se a cabeça:</p>
+  <ol class="steps"><li><span>Em <strong>"Osé shalom bimromav"</strong>, para a esquerda.</span></li><li><span>Em <strong>"hu berachamav yaassê shalom alênu"</strong>, para a direita.</span></li><li><span>Em <strong>"veal kol amó Yisrael, veimru amen"</strong>, para a frente.</span></li></ol><figure class="figure"><svg viewBox="0 0 640 230" role="img" aria-labelledby="bk-t"><title id="bk-t">Os três passos para trás no fim da Amidá e as três inclinações de cabeça</title><g fill="var(--tchelet)"><use href="#foot" transform="translate(520 140) rotate(90)"/><use href="#foot" transform="translate(520 114) rotate(90) scale(-1 1)"/></g><g fill="var(--tchelet)" opacity=".55"><use href="#foot" transform="translate(420 114) rotate(90) scale(-1 1)"/><use href="#foot" transform="translate(320 140) rotate(90)"/><use href="#foot" transform="translate(220 114) rotate(90) scale(-1 1)"/></g><g fill="var(--muted)" opacity=".45"><use href="#foot" transform="translate(130 140) rotate(90)"/><use href="#foot" transform="translate(130 114) rotate(90) scale(-1 1)"/></g><g font-family="Rubik, sans-serif" font-size="12" text-anchor="middle"><text x="520" y="200" fill="var(--tchelet)" font-weight="600">Fim da reza</text><text x="420" y="70" fill="var(--ink)">1 · pé esquerdo</text><text x="320" y="200" fill="var(--ink)">2 · pé direito</text><text x="220" y="70" fill="var(--ink)">3 · pé esquerdo</text><text x="130" y="200" fill="var(--muted)">Pés juntos</text><text x="605" y="132" fill="var(--gold)" font-weight="600">→</text><text x="605" y="100" fill="var(--gold)" font-weight="600">Jerusalém</text></g></svg><figcaption>Vista de cima: quem reza recua sem se virar, ainda de frente para Jerusalém. O primeiro passo é com o pé esquerdo, o mesmo usado para "sair" diante de um rei.</figcaption></figure><p>Depois dos passos, fica-se parado no lugar por alguns instantes. Quem reza com minian espera o chazan chegar à Kedushá antes de voltar à posição inicial.</p>
+</section>
+
+
+<section id="cap4" aria-labelledby="h-c4">
+  <div class="eyebrow">Capítulo 4</div>
+  <h2 id="h-c4">Minian: rezar com a comunidade</h2>
+
+  <h3>Por que dez</h3>
+  <p>Minian é o grupo de dez homens judeus a partir dos 13 anos que forma uma congregação. O Talmud aprende o número de dois versículos (Berachot 21b; Meguilá 23b). A Torá diz "serei santificado no meio dos filhos de Israel" (Vayicrá 22:32), e a palavra "meio" liga esse versículo ao dos dez espiões, que a Torá chama de "congregação" (Bamidbar 14:27). Daí se aprende que uma congregação de Israel começa em dez.</p>
+  <p>Os sábios ensinam que D'us não rejeita a reza de uma comunidade (Berachot 8a). Quem reza com minian junta a sua reza à de todos. Por isso vale o esforço de ir à sinagoga, mesmo quando rezar em casa seria mais fácil.</p>
+
+  <h3>O que só se faz com minian</h3>
+  <p>Algumas partes da reza são <em>devarim shebikdushá</em>, "palavras de santidade", e só são ditas com dez (Orach Chayim 55:1):</p>
+  <ul>
+    <li>A repetição da Amidá pelo chazan (<em>chazarat hashats</em>) e a Kedushá dentro dela</li>
+    <li>O Kadish e o Barechu</li>
+    <li>A leitura da Torá</li>
+    <li>A Birkat Cohanim, a bênção dos sacerdotes</li>
+  </ul>
+  <p>Quem precisa rezar sozinho deve, se puder, rezar no mesmo horário em que a congregação reza (Orach Chayim 90:9). Sozinho, pula-se a Kedushá e tudo o que exige minian.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 640 200" role="img" aria-labelledby="mn-t">
+      <title id="mn-t">A Amidá com minian: primeiro todos rezam em silêncio, depois o chazan repete em voz alta</title>
+      <g font-family="Rubik, sans-serif">
+        <rect x="20" y="30" width="270" height="110" rx="6" fill="var(--paper)" stroke="var(--line)"/>
+        <text x="155" y="55" text-anchor="middle" font-size="13" font-weight="600" fill="var(--ink)">1 · Amidá em silêncio</text>
+        <g fill="var(--tchelet)" opacity=".75">
+          <circle cx="60" cy="90" r="9"/><circle cx="90" cy="90" r="9"/><circle cx="120" cy="90" r="9"/><circle cx="150" cy="90" r="9"/><circle cx="180" cy="90" r="9"/>
+          <circle cx="60" cy="118" r="9"/><circle cx="90" cy="118" r="9"/><circle cx="120" cy="118" r="9"/><circle cx="150" cy="118" r="9"/><circle cx="180" cy="118" r="9"/>
+        </g>
+        <text x="245" y="98" text-anchor="middle" font-size="11" fill="var(--muted)">cada um</text>
+        <text x="245" y="113" text-anchor="middle" font-size="11" fill="var(--muted)">por si</text>
+        <path d="M300 85 h30 l-8 -6 m8 6 l-8 6" stroke="var(--gold)" stroke-width="2.5" fill="none"/>
+        <rect x="340" y="30" width="280" height="110" rx="6" fill="var(--tchelet-soft)" stroke="var(--tchelet)"/>
+        <text x="480" y="55" text-anchor="middle" font-size="13" font-weight="600" fill="var(--ink)">2 · Repetição do chazan</text>
+        <circle cx="390" cy="104" r="12" fill="var(--gold)"/>
+        <text x="390" y="132" text-anchor="middle" font-size="10" fill="var(--muted)">chazan</text>
+        <text x="420" y="84" font-size="11" fill="var(--ink)">a congregação responde:</text>
+        <text x="420" y="101" font-size="11" fill="var(--ink)">Baruch hu uvaruch shemo · Amen</text>
+        <text x="420" y="118" font-size="11" fill="var(--ink)">Kedushá · Modim deRabanan</text>
+        <text x="420" y="135" font-size="11" fill="var(--ink)">Birkat Cohanim (Shacharit)</text>
+        <text x="320" y="180" text-anchor="middle" font-size="12" fill="var(--muted)">Em Arvit não há repetição: o chazan só diz Kadish depois da Amidá.</text>
+      </g>
+    </svg>
+    <figcaption>A repetição foi criada para quem não sabia rezar sozinho: ouvindo o chazan e respondendo amen, essa pessoa cumpria a sua obrigação (Orach Chayim 124:1). Por isso é preciso ouvir com atenção e não conversar durante ela.</figcaption>
+  </figure>
+
+  <h3>Durante a repetição</h3>
+  <p>Quando o chazan diz "Baruch atá Adonai", responde-se <strong>"Baruch hu uvaruch shemo"</strong> ("Bendito seja Ele e bendito seja o Seu Nome"). No fim de cada bênção, responde-se <strong>"Amen"</strong>, que quer dizer "é verdade" e confirma o que foi dito.</p>
+
+  <h3>A Kedushá <span class="mn" title="Só se diz com minian">Só com minian</span></h3>
+  <p>Na terceira bênção, o chazan e a congregação dizem juntos as palavras dos anjos. Fica-se de pé, com os pés juntos, como na Amidá. É costume erguer-se na ponta dos pés três vezes ao dizer "Kadosh, kadosh, kadosh", como quem se eleva em direção ao céu.</p>
+  <div class="prayer">
+    <div><div class="lbl">Hebraico</div><p class="heb">נַקְדִּישָׁךְ וְנַעֲרִיצָךְ, כְּנֹֽעַם שִֽׂיחַ סוֹד שַׂרְפֵי קֹֽדֶשׁ, הַמְשַׁלְּשִׁים לְךָ קְדֻשָּׁה, וְכֵן כָּתוּב עַל יַד נְבִיאָךְ: וְקָרָא זֶה אֶל־זֶה וְאָמַר: קָדוֹשׁ קָדוֹשׁ קָדוֹשׁ יְהֹוָה צְבָאוֹת, מְלֹא כָל־הָאָרֶץ כְּבוֹדוֹ. לְעֻמָּתָם מְשַׁבְּחִים וְאוֹמְרִים: בָּרוּךְ כְּבוֹד־יְהֹוָה מִמְּקוֹמוֹ. וּבְדִבְרֵי קָדְשָׁךְ כָּתוּב לֵאמֹר: יִמְלֹךְ יְהֹוָה לְעוֹלָם, אֱלֹהַיִךְ צִיּוֹן לְדֹר וָדֹר, הַלְלוּיָהּ:</p></div>
+    <div><div class="lbl">Transliteração</div><p class="translit">Nakdishach venaaritsach kenóam siach sod sarfê kódesh, hamshaleshim lechá kedushá, vechen katuv al yad neviach: Vekará ze el ze veamar: <strong>Kadosh, kadosh, kadosh Adonai Tsevaot, melo chol haárets kevodo.</strong> Leumatam meshabechim veomerim: <strong>Baruch kevod Adonai mimekomo.</strong> Uvdivrê kodshach katuv lemor: <strong>Yimloch Adonai leolam, Elohayich Tsion ledor vador, haleluyá.</strong></p></div>
+    <div><div class="lbl">Tradução</div><p class="transl">Nós Te santificaremos e Te exaltaremos como a doce conversa dos serafins santos, que três vezes Te proclamam santo, como está escrito pelo Teu profeta: "E um chamava o outro e dizia: Santo, santo, santo é Adonai dos exércitos; toda a terra está cheia da Sua glória" (Yeshayahu 6:3). Diante deles, louvam e dizem: "Bendita seja a glória de Adonai, desde o Seu lugar" (Yechezkel 3:12). E nas Tuas palavras santas está escrito: "Adonai reinará para sempre, o teu D'us, ó Tsion, de geração em geração. Haleluyá" (Tehilim 146:10).</p></div>
+    <div class="var"><strong>No Mussaf de Shabat e das festas,</strong> a Kedushá sefaradi começa com outras palavras, "Kéter yitenu lechá", "uma coroa Te darão", mas os três versículos são os mesmos.</div>
+  </div>
+
+  <h3>Modim deRabanan <span class="mn" title="Só se diz com minian">Só com minian</span></h3>
+  <p>Quando o chazan chega a Modim, a congregação se curva e diz em voz baixa um agradecimento próprio. Pedir pode ser feito por meio de um representante, mas agradecer cada um precisa fazer por si (Sotá 40a; Orach Chayim 127:1).</p>
+  <div class="prayer">
+    <div><div class="lbl">Hebraico</div><p class="heb">מוֹדִים אֲנַחְנוּ לָךְ, שֶׁאַתָּה הוּא יְהֹוָה אֱלֹהֵינוּ וֵאלֹהֵי אֲבוֹתֵינוּ, אֱלֹהֵי כָל בָּשָׂר, יוֹצְרֵנוּ יוֹצֵר בְּרֵאשִׁית. בְּרָכוֹת וְהוֹדָאוֹת לְשִׁמְךָ הַגָּדוֹל וְהַקָּדוֹשׁ, עַל שֶׁהֶחֱיִיתָנוּ וְקִיַּמְתָּנוּ. כֵּן תְּחַיֵּנוּ וּתְחָנֵּנוּ וְתֶאֱסוֹף גָּלֻיּוֹתֵינוּ לְחַצְרוֹת קָדְשֶׁךָ, לִשְׁמֹר חֻקֶּיךָ וְלַעֲשׂוֹת רְצוֹנְךָ וּלְעָבְדְךָ בְלֵבָב שָׁלֵם, עַל שֶׁאֲנַחְנוּ מוֹדִים לָךְ. בָּרוּךְ אֵל הַהוֹדָאוֹת:</p></div>
+    <div><div class="lbl">Transliteração</div><p class="translit">Modim anáchnu lach, sheatá hu Adonai Elohênu vElohê avotênu, Elohê chol bassar, yotsrênu yotser bereshit. Berachot vehodaot leshimchá hagadol vehakadosh, al shehecheyitánu vekiyamtánu. Ken techayênu utechonênu veteessof galuyotênu lechatsrot kodshêcha, lishmor chukêcha velaassot retsonechá ulovdechá belevav shalem, al sheanáchnu modim lach. Baruch El hahodaot.</p></div>
+    <div><div class="lbl">Tradução</div><p class="transl">Nós Te agradecemos, porque Tu és Adonai, nosso D'us e D'us de nossos pais, D'us de toda criatura, nosso Criador e Criador do princípio. Bênçãos e agradecimentos ao Teu grande e santo Nome, por nos teres dado vida e nos teres sustentado. Assim continua a nos dar vida e graça, e reúne os nossos exilados nos átrios do Teu santuário, para guardar as Tuas leis, fazer a Tua vontade e servir-Te de todo o coração, porque nós Te agradecemos. Bendito seja o D'us dos agradecimentos.</p></div>
+  </div>
+
+  <h3>Birkat Cohanim: a bênção dos sacerdotes <span class="mn" title="Só se diz com minian">Só com minian</span></h3>
+  <p>Na repetição de Shacharit, antes da última bênção, os cohanim, descendentes de Aharon, sobem à frente da sinagoga, cobrem-se com o talit, estendem as mãos e abençoam a congregação com as palavras da Torá (Bamidbar 6:24–26). Nas comunidades sefaradim isso acontece <strong>todos os dias</strong>, também fora de Israel. Nas comunidades ashkenazim da Diáspora, só nas festas.</p>
+  <p>Durante a bênção, a congregação fica de frente para os cohanim, em silêncio, sem olhar para as suas mãos, e responde "Amen" depois de cada verso.</p>
+  <div class="prayer">
+    <div><div class="lbl">Hebraico</div><p class="heb">יְבָרֶכְךָ יְהֹוָה וְיִשְׁמְרֶךָ. יָאֵר יְהֹוָה פָּנָיו אֵלֶיךָ וִיחֻנֶּךָּ. יִשָּׂא יְהֹוָה פָּנָיו אֵלֶיךָ וְיָשֵׂם לְךָ שָׁלוֹם:</p></div>
+    <div><div class="lbl">Transliteração</div><p class="translit">Yevarechechá Adonai veyishmerêcha. (Amen) Yaer Adonai panav elêcha vichunêka. (Amen) Yissá Adonai panav elêcha veyassem lechá shalom. (Amen)</p></div>
+    <div><div class="lbl">Tradução</div><p class="transl">Que Adonai te abençoe e te guarde. Que Adonai faça brilhar o Seu rosto para ti e te conceda graça. Que Adonai volte o Seu rosto para ti e te dê a paz.</p></div>
+    <div class="var"><strong>Quando não há cohanim,</strong> o próprio chazan diz os versos depois de uma introdução, e a congregação responde a cada verso "Ken yehi ratson", "assim seja a Tua vontade".</div>
+  </div>
+</section>
+
+<section id="cap5" aria-labelledby="h-c5">
+  <div class="eyebrow">Capítulo 5</div>
+  <h2 id="h-c5">As rezas do dia</h2>
+  <p>O dia judaico tem três rezas, e a Amidá está no centro de cada uma. O que vem antes prepara a pessoa para ela, e o que vem depois a ajuda a voltar para o dia.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 640 170" role="img" aria-labelledby="dy-t">
+      <title id="dy-t">O arco do dia com os horários das três rezas</title>
+      <g font-family="Rubik, sans-serif">
+        <path d="M40 130 Q320 -10 600 130" fill="none" stroke="var(--line)" stroke-width="3"/>
+        <line x1="20" y1="130" x2="620" y2="130" stroke="var(--line)"/>
+        <circle cx="95" cy="92" r="12" fill="var(--gold)"/>
+        <circle cx="430" cy="68" r="12" fill="var(--gold)" opacity=".8"/>
+        <circle cx="590" cy="122" r="7" fill="var(--tchelet)"/>
+        <g font-size="13" font-weight="600" fill="var(--ink)" text-anchor="middle">
+          <text x="95" y="60">Shacharit</text><text x="430" y="36">Minchá</text><text x="575" y="95">Arvit</text>
+        </g>
+        <g font-size="11" fill="var(--muted)" text-anchor="middle">
+          <text x="95" y="150">do nascer do sol até</text><text x="95" y="164">o fim da 4ª hora do dia</text>
+          <text x="400" y="150">de meia hora depois do meio-dia</text><text x="400" y="164">até o pôr do sol</text>
+          <text x="580" y="150">depois que</text><text x="580" y="164">saem as estrelas</text>
+        </g>
+      </g>
+    </svg>
+    <figcaption>As "horas" do dia são proporcionais: o tempo entre o nascer e o pôr do sol dividido por 12. Os horários exatos mudam a cada dia e em cada cidade; sites e apps de calendário judaico os calculam.</figcaption>
+  </figure>
+
+  <h3>Shacharit, a reza da manhã</h3>
+  <p>O melhor horário é começar a Amidá exatamente ao nascer do sol, como faziam os <em>vatikin</em>, os piedosos (Berachot 9b). O prazo é o fim da quarta hora proporcional do dia. Se passar, ainda se pode rezar até o meio-dia (Orach Chayim 89:1). A ordem no sidur sefaradi é:</p>
+  <ol class="flow">
+    <li>Birkot Hashachar, as bênçãos da manhã, com o talit e os tefilin</li>
+    <li>Korbanot, os trechos sobre os sacrifícios, incluindo o Pitum Haketóret</li>
+    <li>Pessukê deZimrá, os salmos de louvor</li>
+    <li>O Shemá, com as suas bênçãos antes e depois</li>
+    <li class="key">A Amidá em silêncio</li>
+    <li>A repetição do chazan, com Kedushá e Birkat Cohanim <span class="mn" title="Só se diz com minian">Só com minian</span></li>
+    <li>Vidui e os 13 Atributos de Misericórdia, nos dias em que se diz tachanun</li>
+    <li>Leitura da Torá, às segundas e quintas, e em Rosh Chodesh e jejuns <span class="mn" title="Só se diz com minian">Só com minian</span></li>
+    <li>Ashrê, Uva leTsion, o Salmo do dia e Alênu</li>
+  </ol>
+
+  <h3>Minchá, a reza da tarde</h3>
+  <p>Corresponde ao sacrifício da tarde e a Yits'chak, que rezava no campo ao entardecer. É a mais fácil de esquecer, porque cai no meio do trabalho. Por isso os sábios dizem que ela tem um valor especial (Berachot 6b). A partir de meia hora depois do meio-dia solar até o pôr do sol:</p>
+  <ol class="flow">
+    <li>Korbanot e Ashrê</li>
+    <li class="key">A Amidá em silêncio</li>
+    <li>A repetição do chazan, com Kedushá <span class="mn" title="Só se diz com minian">Só com minian</span></li>
+    <li>Vidui, nos dias em que se diz tachanun</li>
+    <li>Alênu</li>
+  </ol>
+
+  <h3>Arvit, a reza da noite</h3>
+  <p>Depois que saem as estrelas. A Amidá de Arvit não tem repetição do chazan, porque no princípio esta reza era opcional; depois o povo de Israel a aceitou como obrigação (Berachot 27b; Rambam, Hilchot Tefilá 1:6).</p>
+  <ol class="flow">
+    <li>Barechu <span class="mn" title="Só se diz com minian">Só com minian</span></li>
+    <li>O Shemá, com duas bênçãos antes e duas depois</li>
+    <li class="key">A Amidá, em silêncio</li>
+    <li>Kadish <span class="mn" title="Só se diz com minian">Só com minian</span></li>
+    <li>Alênu</li>
+  </ol>
+</section>
+
+<section id="cap6" aria-labelledby="h-c6">
+  <div class="eyebrow">Capítulo 6</div>
+  <h2 id="h-c6">Variações ao longo do ano</h2>
+  <p>A Amidá de dia de semana muda um pouco conforme a época. A tabela mostra onde entra cada acréscimo, e os textos mais longos vêm logo abaixo.</p>
+  <div class="scroll"><table class="cal">
+    <thead><tr><th>Quando</th><th>O que muda</th><th>Bênção</th></tr></thead>
+    <tbody>
+      <tr><td>Verão de Israel (Pesach a Shemini Atsêret)</td><td>"Morid hatal" e "Barechênu"</td><td>2 e 9</td></tr>
+      <tr><td>Inverno de Israel</td><td>"Mashiv harúach umorid hagueshem" (desde Shemini Atsêret) e "Barech alênu" (desde 4 de dezembro)</td><td>2 e 9</td></tr>
+      <tr><td>Saída do Shabat e das festas, em Arvit</td><td>"Atá chonantánu", uma pequena Havdalá</td><td>4</td></tr>
+      <tr><td>Rosh Chodesh e Chol HaMoed</td><td>"Yaalê veyavô"</td><td>17</td></tr>
+      <tr><td>Chanucá e Purim</td><td>"Al hanissim"</td><td>18</td></tr>
+      <tr><td>Jejuns públicos</td><td>"Anênu"</td><td>16 (o chazan, entre 7 e 8)</td></tr>
+      <tr><td>Tishá beAv</td><td>"Nachem"</td><td>14</td></tr>
+      <tr><td>Dez Dias de Teshuvá</td><td>Seis acréscimos e trocas</td><td>1, 2, 3, 11, 18, 19</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 id="yaale">Yaalê veyavô</h3>
+  <div class="prayer">
+    <div><div class="lbl">Hebraico</div><p class="heb">אֱלֹהֵֽינוּ וֵאלֹהֵי אֲבוֹתֵֽינוּ, יַעֲלֶה וְיָבֹא, וְיַגִּֽיעַ וְיֵרָאֶה, וְיֵרָצֶה וְיִשָּׁמַע, וְיִפָּקֵד וְיִזָּכֵר, זִכְרוֹנֵֽנוּ וְזִכְרוֹן אֲבוֹתֵֽינוּ, זִכְרוֹן יְרוּשָׁלַֽיִם עִירָךְ, וְזִכְרוֹן מָשִֽׁיחַ בֶּן־דָּוִד עַבְדָּךְ, וְזִכְרוֹן כָּל־עַמְּךָ בֵּית יִשְׂרָאֵל לְפָנֶֽיךָ, לִפְלֵיטָה, לְטוֹבָה, לְחֵן, לְחֶֽסֶד וּלְרַחֲמִים, לְחַיִּים טוֹבִים וּלְשָׁלוֹם, בְּיוֹם <span class="opt">רֹאשׁ חֹֽדֶשׁ הַזֶּה</span> <span class="opt">חַג הַמַּצּוֹת הַזֶּה, בְּיוֹם מִקְרָא קֹֽדֶשׁ הַזֶּה</span> <span class="opt">חַג הַסֻּכּוֹת הַזֶּה, בְּיוֹם מִקְרָא קֹֽדֶשׁ הַזֶּה</span>, לְרַחֵם בּוֹ עָלֵֽינוּ וּלְהוֹשִׁיעֵֽנוּ. זָכְרֵֽנוּ יְהֹוָה אֱלֹהֵֽינוּ בּוֹ לְטוֹבָה, וּפָקְדֵֽנוּ בוֹ לִבְרָכָה, וְהוֹשִׁיעֵֽנוּ בוֹ לְחַיִּים טוֹבִים, בִּדְבַר יְשׁוּעָה וְרַחֲמִים. חוּס וְחָנֵּֽנוּ, וַחֲמוֹל וְרַחֵם עָלֵֽינוּ, וְהוֹשִׁיעֵֽנוּ כִּי אֵלֶֽיךָ עֵינֵֽינוּ, כִּי אֵל מֶֽלֶךְ חַנּוּן וְרַחוּם אָֽתָּה:</p></div>
+    <div><div class="lbl">Transliteração</div><p class="translit">Elohênu vElohê avotênu, yaalê veyavô, veyaguía veyeraê, veyeratsê veyishamá, veyipaked veyizacher, zichronênu vezichron avotênu, zichron Yerushaláyim irach, vezichron Mashíach ben David avdach, vezichron kol amechá Bet Yisrael lefanêcha, lifletá, letová, lechen, lechessed ulrachamim, lechayim tovim ulshalom, beyom <em>[Rosh Chódesh hazé]</em> <em>[Chag hamatsot hazé, beyom mikrá kódesh hazé]</em> <em>[Chag hassucot hazé, beyom mikrá kódesh hazé]</em>, lerachem bo alênu ulhoshiênu. Zochrênu Adonai Elohênu bo letová, ufokdênu vo livrachá, vehoshiênu vo lechayim tovim, bidvar yeshuá verachamim. Chus vechonênu, vachamol verachem alênu, vehoshiênu ki elêcha enênu, ki El Mêlech chanun verachum áta.</p></div>
+    <div><div class="lbl">Tradução</div><p class="transl">Nosso D'us e D'us de nossos pais, que suba, chegue, alcance, seja visto, seja aceito, seja ouvido, seja considerado e seja lembrado diante de Ti a nossa lembrança e a lembrança de nossos pais, a lembrança de Jerusalém, Tua cidade, a lembrança do Mashíach filho de David, Teu servo, e a lembrança de todo o Teu povo, a Casa de Israel, para salvação, para o bem, para graça, bondade e misericórdia, para vida boa e paz, neste dia de <em>[Rosh Chodesh]</em> <em>[festa das Matsot, dia de convocação santa]</em> <em>[festa de Sucot, dia de convocação santa]</em>, para ter misericórdia de nós e nos salvar. Lembra-Te de nós, Adonai, nosso D'us, neste dia para o bem; considera-nos para bênção; salva-nos para vida boa, com palavra de salvação e misericórdia. Poupa-nos e sê generoso conosco, tem compaixão e misericórdia de nós e salva-nos, pois para Ti estão voltados os nossos olhos, porque Tu és D'us, Rei generoso e misericordioso.</p></div>
+  </div>
+
+  <h3 id="alhanissim">Al hanissim</h3>
+  <div class="prayer">
+    <div><div class="lbl">Hebraico · abertura</div><p class="heb">עַל הַנִּסִּים וְעַל הַפֻּרְקָן וְעַל הַגְּבוּרוֹת וְעַל הַתְּשׁוּעוֹת וְעַל הַנִּפְלָאוֹת וְעַל הַנֶּחָמוֹת שֶׁעָשִֽׂיתָ לַאֲבוֹתֵֽינוּ בַּיָּמִים הָהֵם בַּזְּמַן הַזֶּה:</p></div>
+    <div><div class="lbl">Transliteração</div><p class="translit">Al hanissim veal hapurkan veal haguevurot veal hateshuot veal hanifleot veal hanechamot sheassíta laavotênu bayamim hahem bazman hazé.</p></div>
+    <div><div class="lbl">Tradução</div><p class="transl">Pelos milagres, pela libertação, pelos feitos poderosos, pelas salvações, pelas maravilhas e pelas consolações que fizeste para os nossos pais, naqueles dias, nesta época.</p></div>
+    <div class="var"><strong>Em Chanucá continua-se:</strong>
+      <p class="heb">בִּימֵי מַתִּתְיָה בֶן־יוֹחָנָן כֹּהֵן גָּדוֹל, חַשְׁמוֹנָאִי וּבָנָיו, כְּשֶׁעָֽמְדָֽה מַלְכוּת יָוָן הָרְשָׁעָה עַל עַמְּךָ יִשְׂרָאֵל, לְשַׁכְּחָם תּוֹרָתָךְ וּלְהַעֲבִירָם מֵחֻקֵּי רְצוֹנָךְ. וְאַתָּה בְּרַחֲמֶֽיךָ הָרַבִּים עָמַֽדְתָּ לָהֶם בְּעֵת צָרָתָם, רַֽבְתָּ אֶת רִיבָם, דַּֽנְתָּ אֶת דִּינָם, נָקַֽמְתָּ אֶת נִקְמָתָם, מָסַֽרְתָּ גִבּוֹרִים בְּיַד חַלָּשִׁים, וְרַבִּים בְּיַד מְעַטִּים, וּרְשָׁעִים בְּיַד צַדִּיקִים, וּטְמֵאִים בְּיַד טְהוֹרִים, וְזֵדִים בְּיַד עֽוֹסְקֵֽי תוֹרָתֶֽךָ. לְךָ עָשִֽׂיתָ שֵׁם גָּדוֹל וְקָדוֹשׁ בְּעוֹלָמָךְ, וּלְעַמְּךָ יִשְׂרָאֵל עָשִֽׂיתָ תְּשׁוּעָה גְדוֹלָה וּפֻרְקָן כְּהַיּוֹם הַזֶּה. וְאַחַר כָּךְ בָּֽאוּ בָנֶֽיךָ לִדְבִיר בֵּיתֶֽךָ, וּפִנּוּ אֶת־הֵיכָלֶֽךָ, וְטִהֲרוּ אֶת־מִקְדָּשֶֽׁךָ, וְהִדְלִֽיקוּ נֵרוֹת בְּחַצְרוֹת קָדְשֶֽׁךָ, וְקָֽבְעֽוּ שְׁמוֹנַת יְמֵי חֲנֻכָּה אֵֽלּוּ בְּהַלֵּל וּבְהוֹדָאָה. וְעָשִֽׂיתָ עִמָּהֶם נִסִּים וְנִפְלָאוֹת, וְנוֹדֶה לְשִׁמְךָ הַגָּדוֹל סֶֽלָה:</p>
+      <p class="translit" style="font-size:.95rem">Bimê Matityá ben Yochanan Cohen Gadol, Chashmonai uvanav, keshe-amedá malchut Yavan harsha'á al amechá Yisrael, leshakecham toratach ulhaaviram mechukê retsonach. Veatá berachamêcha harabim amádta lahem beet tsaratam, rávta et rivam, dánta et dinam, nakámta et nikmatam, massárta guiborim beyad chalashim, verabim beyad meatim, ursha'im beyad tsadikim, utmeim beyad tehorim, vezedim beyad osskê toratêcha. Lechá assíta shem gadol vekadosh beolamach, uleamechá Yisrael assíta teshuá guedolá ufurkan kehayom hazé. Veachar kach báu vanêcha lidvir betêcha, ufinu et hechalêcha, vetiharu et mikdashêcha, vehidlíku nerot bechatsrot kodshêcha, vekaveú shemonat yemê Chanucá élu behalel uvhodaá. Veassíta imahem nissim veniflaot, venodê leshimchá hagadol sela.</p>
+      <p class="transl" style="margin:0">Nos dias de Matityá, filho de Yochanan, o Sumo Sacerdote, o Chashmonai, e seus filhos, quando o reino grego malvado se levantou contra o Teu povo Israel para fazê-los esquecer a Tua Torá e afastá-los das leis da Tua vontade, Tu, na Tua grande misericórdia, estiveste ao lado deles na hora da sua aflição. Defendeste a sua causa, julgaste o seu julgamento e vingaste a sua vingança. Entregaste os fortes nas mãos dos fracos, os muitos nas mãos dos poucos, os malvados nas mãos dos justos, os impuros nas mãos dos puros e os arrogantes nas mãos dos que estudam a Tua Torá. Para Ti fizeste um Nome grande e santo no Teu mundo, e para o Teu povo Israel fizeste uma grande salvação e libertação, como neste dia. Depois os Teus filhos vieram ao santuário da Tua Casa, limparam o Teu templo, purificaram o Teu santuário, acenderam luzes nos Teus átrios santos e fixaram estes oito dias de Chanucá para louvar e agradecer. Fizeste para eles milagres e maravilhas, e agradeceremos ao Teu grande Nome para sempre.</p>
+    </div>
+    <div class="var"><strong>Em Purim continua-se:</strong>
+      <p class="heb">בִּימֵי מָרְדְּכַי וְאֶסְתֵּר בְּשׁוּשַׁן הַבִּירָה, כְּשֶׁעָמַד עֲלֵיהֶם הָמָן הָרָשָׁע, בִּקֵּשׁ לְהַשְׁמִיד לַהֲרֹג וּלְאַבֵּד אֶת־כָּל־הַיְּהוּדִים מִנַּֽעַר וְעַד זָקֵן טַף וְנָשִׁים בְּיוֹם אֶחָד, בִּשְׁלֹשָׁה עָשָׂר לְחֹֽדֶשׁ שְׁנֵים עָשָׂר הוּא חֹֽדֶשׁ אֲדָר, וּשְׁלָלָם לָבוֹז. וְאַתָּה בְּרַחֲמֶֽיךָ הָרַבִּים הֵפַֽרְתָּ אֶת־עֲצָתוֹ, וְקִלְקַֽלְתָּ אֶת־מַחֲשַׁבְתּוֹ, וַהֲשֵׁבֽוֹתָ לּוֹ גְּמוּלוֹ בְרֹאשׁוֹ, וְתָלוּ אוֹתוֹ וְאֶת־בָּנָיו עַל הָעֵץ. וְעָשִֽׂיתָ עִמָּהֶם נֵס וָפֶֽלֶא, וְנוֹדֶה לְשִׁמְךָ הַגָּדוֹל סֶֽלָה:</p>
+      <p class="translit" style="font-size:.95rem">Bimê Mordechai veEster beShushan habirá, keshe-amad alehem Haman harashá, bikesh lehashmid laharog ulabed et kol hayehudim minaar vead zaken, taf venashim, beyom echad, bishloshá assar lechódesh shenem assar hu chódesh Adar, ushlalam lavoz. Veatá berachamêcha harabim hefárta et atsató, vekilkálta et machashavtó, vahashevóta lo guemuló verosho, vetalu otó veet banav al haets. Veassíta imahem nes vafele, venodê leshimchá hagadol sela.</p>
+      <p class="transl" style="margin:0">Nos dias de Mordechai e Ester, em Shushan, a capital, quando o malvado Haman se levantou contra eles e quis destruir, matar e exterminar todos os judeus, jovens e velhos, crianças e mulheres, num só dia, o dia 13 do 12º mês, que é o mês de Adar, e saquear os seus bens, Tu, na Tua grande misericórdia, anulaste o seu plano, frustraste o seu pensamento e fizeste o mal recair sobre a sua cabeça, e o penduraram com os seus filhos na forca. Fizeste para eles um milagre e uma maravilha, e agradeceremos ao Teu grande Nome para sempre.</p>
+    </div>
+  </div>
+
+  <h3 id="anenu">Anênu, nos jejuns</h3>
+  <p>Nos jejuns públicos (Tsom Guedaliá, 10 de Tevet, Taanit Ester, 17 de Tamuz e Tishá beAv), cada pessoa que está jejuando acrescenta este trecho em Shomêa Tefilá, sem bênção própria. O chazan, na repetição, o diz como uma bênção separada entre a 7ª e a 8ª.</p>
+  <div class="prayer">
+    <div><div class="lbl">Hebraico</div><p class="heb">עֲנֵנוּ אָבִינוּ עֲנֵנוּ בְּיוֹם צוֹם הַתַּֽעֲנִית הַזֶּה, כִּי בְצָרָה גְדוֹלָה אֲנָֽחְנוּ. אַל־תֵּֽפֶן לְרִשְׁעֵֽנוּ, וְאַל־תִּתְעַלָּם מַלְכֵּֽנוּ מִבַּקָּשָׁתֵֽנוּ. הֱיֵה נָא קָרוֹב לְשַׁוְעָתֵֽנוּ. טֶֽרֶם נִקְרָא אֵלֶֽיךָ אַתָּה תַֽעֲנֶה, נְדַבֵּר וְאַתָּה תִשְׁמַע, כַּדָּבָר שֶׁנֶּאֱמַר: וְהָיָה טֶֽרֶם־יִקְרָאוּ וַאֲנִי אֶעֱנֶה, עוֹד הֵם מְדַבְּרִים וַאֲנִי אֶשְׁמָע. כִּי אַתָּה יְהֹוָה פּוֹדֶה וּמַצִּיל, וְעוֹנֶה וּמְרַחֵם בְּכָל־עֵת צָרָה וְצוּקָה:</p></div>
+    <div><div class="lbl">Transliteração</div><p class="translit">Anênu Avínu anênu beyom tsom hataanit hazé, ki vetsará guedolá anáchnu. Al têfen lerish'ênu, veal titalam Malkênu mibakashatênu. Heyê na karov leshav'atênu. Térem nikrá elêcha atá taanê, nedaber veatá tishmá, kadavar sheneemar: Vehayá térem yikráu vaani eenê, od hem medaberim vaani eshmá. Ki atá Adonai podê umatsil, veonê umerachem bechol et tsará vetsucá.</p></div>
+    <div><div class="lbl">Tradução</div><p class="transl">Responde-nos, nosso Pai, responde-nos neste dia de jejum, pois estamos em grande aflição. Não olhes para a nossa maldade e não Te escondas, nosso Rei, do nosso pedido. Fica perto do nosso clamor. Antes que Te chamemos, responde; enquanto falamos, ouve, como está dito: "Antes que chamem, Eu responderei; enquanto ainda falam, Eu ouvirei" (Yeshayahu 65:24). Pois Tu, Adonai, resgatas e salvas, respondes e tens misericórdia em todo tempo de aflição e angústia.</p></div>
+  </div>
+
+  <h3>Saída do Shabat: Atá chonantánu</h3>
+  <p>Em Arvit da saída do Shabat e das festas, acrescenta-se na 4ª bênção, depois de "Atá chonen leadam dáat", um trecho que começa com <span class="heb" style="font-size:1.15rem">אַתָּה חוֹנַנְתָּנוּ</span> (<em>Atá chonantánu</em>, "Tu nos agraciaste"). Ele agradece a D'us por separar o sagrado do comum, a luz da escuridão e o Shabat dos dias de trabalho. É uma Havdalá dentro da reza. Mesmo assim, ainda se faz a Havdalá sobre o vinho depois.</p>
+
+  <h3>Os Dez Dias de Teshuvá</h3>
+  <p>De Rosh Hashaná a Yom Kipur, a Amidá destaca que D'us é Rei e Juiz. São seis mudanças, todas indicadas nas bênçãos do capítulo 3:</p>
+  <ul>
+    <li>Bênção 1: "Zochrênu lechayim"</li>
+    <li>Bênção 2: "Mi chamocha Av harachaman"</li>
+    <li>Bênção 3: "HaMêlech hakadosh" no lugar de "haEl hakadosh"</li>
+    <li>Bênção 11: "HaMêlech hamishpat"</li>
+    <li>Bênção 18: "Uchtov lechayim tovim"</li>
+    <li>Bênção 19: "Uvsêfer chayim" e, no fim, "Osé hashalom"</li>
+  </ul>
+  <p>Depois da Amidá diz-se o Avínu Malkênu, menos no Shabat.</p>
+</section>
+
+<section id="cap7" aria-labelledby="h-c7">
+  <div class="eyebrow">Capítulo 7</div>
+  <h2 id="h-c7">E se eu errar?</h2>
+  <p>Errar faz parte de aprender. Algumas omissões exigem voltar a um ponto da reza, e outras não. A regra geral é: se você perceber o erro antes de dizer o Nome de D'us no fim da bênção, basta corrigir ali. As regras abaixo valem para quem só percebeu depois.</p>
+  <div class="scroll"><table class="cal">
+    <thead><tr><th>O que aconteceu</th><th>O que fazer</th><th>Fonte</th></tr></thead>
+    <tbody>
+      <tr><td>Disse "Mashiv harúach" no verão</td><td>Voltar ao início da bênção 2. Se já terminou a Amidá, repeti-la.</td><td>O.C. 114:4</td></tr>
+      <tr><td>No inverno, disse "Morid hatal" no lugar de "Mashiv harúach"</td><td>Não volta: o orvalho também é mencionado.</td><td>O.C. 114:3</td></tr>
+      <tr><td>No inverno, disse "Barechênu" (texto de verão)</td><td>Se ainda não terminou a bênção 16, pede-se chuva em Shomêa Tefilá. Se já passou, volta-se à bênção 9. Se terminou a Amidá, repete-se.</td><td>O.C. 117:5</td></tr>
+      <tr><td>Nos Dez Dias, disse "haEl hakadosh"</td><td>Repetir a Amidá desde o início.</td><td>O.C. 582:1</td></tr>
+      <tr><td>Nos Dez Dias, disse "Mêlech ohev tsedaká umishpat"</td><td>Segundo o Shulchan Aruch, que os sefaradim seguem, voltar à bênção 11. Os ashkenazim não voltam.</td><td>O.C. 118:1</td></tr>
+      <tr><td>Esqueceu "Yaalê veyavô" em Shacharit ou Minchá</td><td>Se lembrou antes de Modim, diz ali. Se já passou, volta a "Retsê". Se terminou a Amidá, repete.</td><td>O.C. 422:1</td></tr>
+      <tr><td>Esqueceu "Yaalê veyavô" em Arvit de Rosh Chodesh</td><td>Não volta.</td><td>O.C. 422:1</td></tr>
+      <tr><td>Esqueceu "Al hanissim"</td><td>Não volta.</td><td>O.C. 682:1</td></tr>
+      <tr><td>Esqueceu "Anênu"</td><td>Não volta.</td><td>O.C. 565:2</td></tr>
+      <tr><td>Esqueceu "Atá chonantánu"</td><td>Não volta, mas não faz nenhum trabalho proibido no Shabat antes de dizer "Baruch hamavdil ben kódesh lechol" ou de fazer a Havdalá.</td><td>O.C. 294:1</td></tr>
+    </tbody>
+  </table></div>
+  <div class="notice"><strong>A regra dos 30 dias.</strong> Nos primeiros 30 dias depois de uma troca, como o início de "Mashiv harúach", quem não lembra o que disse presume que disse o texto antigo, por hábito. Depois de 30 dias, presume que disse o certo (Orach Chayim 114:8). Muitos repetem a frase nova 90 vezes no primeiro dia para acostumar a boca.</div>
+  <p>Estas são as regras básicas. Casos mais complicados, como lembrar no meio de outra bênção ou ter dúvida se já rezou, devem ser perguntados ao rabino.</p>
+</section>
+
+<section id="cap8" aria-labelledby="h-c8">
+  <div class="eyebrow">Capítulo 8</div>
+  <h2 id="h-c8">Shabat e festas</h2>
+  <p>No Shabat e nas festas, a Amidá tem <strong>sete bênçãos</strong>. As três primeiras e as três últimas são as mesmas da semana. Os treze pedidos do meio dão lugar a uma única bênção sobre a santidade do dia, a <em>Kedushat Hayom</em>. Assim, no dia de descanso, não se lembra das preocupações e necessidades do dia a dia.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 640 150" role="img" aria-labelledby="sb-t">
+      <title id="sb-t">Comparação entre a Amidá de semana, com 19 bênçãos, e a de Shabat, com 7</title>
+      <g font-family="Rubik, sans-serif" font-size="12">
+        <text x="20" y="38" fill="var(--ink)" font-weight="600">Semana</text>
+        
+        <text x="20" y="108" fill="var(--ink)" font-weight="600">Shabat</text>
+      </g>
+      <g>
+        <rect x="100" y="22" width="78" height="26" rx="3" fill="var(--gold-soft)" stroke="var(--gold)"/>
+        <rect x="186" y="22" width="300" height="26" rx="3" fill="var(--tchelet-soft)" stroke="var(--tchelet)"/>
+        <rect x="494" y="22" width="78" height="26" rx="3" fill="var(--gold-soft)" stroke="var(--gold)"/>
+        <rect x="100" y="92" width="78" height="26" rx="3" fill="var(--gold-soft)" stroke="var(--gold)"/>
+        <rect x="186" y="92" width="300" height="26" rx="3" fill="var(--paper)" stroke="var(--gold)" stroke-dasharray="4 3"/>
+        <rect x="494" y="92" width="78" height="26" rx="3" fill="var(--gold-soft)" stroke="var(--gold)"/>
+      </g>
+      <g font-family="Rubik, sans-serif" font-size="11" text-anchor="middle" fill="var(--ink)">
+        <text x="139" y="39">1 a 3</text><text x="336" y="39">13 pedidos</text><text x="533" y="39">17 a 19</text>
+        <text x="139" y="109">1 a 3</text><text x="336" y="109">1 bênção: a santidade do dia</text><text x="533" y="109">5 a 7</text>
+        <text x="336" y="140" fill="var(--muted)">19 bênçãos → 7 bênçãos</text>
+      </g>
+    </svg>
+  </figure>
+
+  <h3>A bênção do meio muda em cada reza do Shabat</h3>
+  <div class="scroll"><table class="cal">
+    <thead><tr><th>Reza</th><th>Começa com</th><th>Tema</th></tr></thead>
+    <tbody>
+      <tr><td>Arvit de sexta à noite</td><td><span class="heb" style="font-size:1.15rem">אַתָּה קִדַּשְׁתָּ</span> <em>Atá kidáshta</em></td><td>A criação: D'us santificou o sétimo dia. Inclui "Vaychulu" (Bereshit 2:1–3).</td></tr>
+      <tr><td>Shacharit</td><td><span class="heb" style="font-size:1.15rem">יִשְׂמַח מֹשֶׁה</span> <em>Yismach Moshé</em></td><td>A entrega da Torá: Moshé traz as tábuas com o mandamento do Shabat.</td></tr>
+      <tr><td>Mussaf</td><td>Varia conforme a comunidade</td><td>O sacrifício adicional do Shabat no Templo (Bamidbar 28:9–10).</td></tr>
+      <tr><td>Minchá</td><td><span class="heb" style="font-size:1.15rem">אַתָּה אֶחָד</span> <em>Atá echad</em></td><td>O futuro: o dia em que o mundo inteiro reconhecerá que D'us é Um.</td></tr>
+    </tbody>
+  </table></div>
+  <p>Todas as quatro terminam com "Retsê vimnuchatênu" e com a bênção <em>"Baruch atá Adonai, mekadesh haShabat"</em>, "que santifica o Shabat".</p>
+
+  <h3>Mussaf</h3>
+  <p>No Shabat, em Rosh Chodesh e nas festas há uma quarta reza, o Mussaf ("acréscimo"), dita logo depois da leitura da Torá. Ela corresponde ao sacrifício adicional que se oferecia no Templo nesses dias. Em Rosh Hashaná, o Mussaf tem nove bênçãos, com as três partes especiais: Malchuyot (reinado), Zichronot (lembranças) e Shofarot (o shofar).</p>
+
+  <h3>As festas</h3>
+  <p>Em Pesach, Shavuot e Sucot, a bênção do meio começa com <span class="heb" style="font-size:1.15rem">אַתָּה בְחַרְתָּנוּ</span> (<em>Atá vechartánu</em>, "Tu nos escolheste") e inclui o Yaalê veyavô com o nome da festa. Os textos completos de Shabat e das festas ficam para um segundo volume.</p>
+</section>
+
+
+<section aria-labelledby="h-src">
+  <div class="eyebrow">Fontes</div>
+  <h3 id="h-src" style="margin-top:0">De onde vem este conteúdo</h3>
+  <ul class="sources">
+    <li>Texto hebraico: Sidur Edot HaMizrach, edição Shaliehsaboo, no Sefaria (domínio público, CC0).</li>
+    <li>Talmud Bavli: Berachot 10b, 26b, 28b, 31a, 34a; Meguilá 17b; Taanit 2a.</li>
+    <li>Rambam, Mishnê Torá, Hilchot Tefilá, capítulo 1.</li>
+    <li>Shulchan Aruch, Orach Chayim 55, 89–127, 294, 422, 565, 582 e 682; Ben Ish Chai, Parashat Beshalach.</li>
+    <li>Talmud Bavli também: Berachot 6b, 8a, 9b, 10a, 12b, 17a, 21b, 27b, 30a; Meguilá 23b; Sotá 40a; Yevamot 105b. Mishná Uktsin 3:12. Rambam, Hilchot Melachim 11.</li>
+    <li>Traduções e explicações: preparadas para este livro. Para dúvidas de halachá prática, confirme com o rabino da sua comunidade.</li>
+  </ul>
+</section>
+
+</div>
