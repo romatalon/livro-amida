@@ -70,14 +70,58 @@ ol.flow{padding-left:1.4rem;display:grid;gap:.3rem;margin:.5rem 0 1rem}
 ol.flow li.key{font-weight:600;color:var(--tchelet)}
 .heb .opt{color:var(--gold)}
 .mn{display:inline-block;vertical-align:middle;font-family:var(--ui);font-size:.68rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;padding:.12rem .5rem;border-radius:99px;background:var(--gold);color:var(--paper);white-space:nowrap;line-height:1.5}
+
+.layout{display:grid;grid-template-columns:17rem minmax(0,1fr);max-width:72rem;margin:0 auto;align-items:start}
+.layout .wrap{margin:0;max-width:46rem;padding-left:max(2rem,env(safe-area-inset-left,0px))}
+.side{position:sticky;top:env(safe-area-inset-top,0px);max-height:100vh;overflow-y:auto;padding:1.5rem 1rem 2rem max(16px,env(safe-area-inset-left,0px));border-right:1px solid var(--line);font-family:var(--ui);font-size:.86rem;line-height:1.35;background:var(--bg)}
+.side-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem}
+.side-close,.side-open{display:none}
+.side ol,.side ul{list-style:none;margin:0;padding:0}
+.side a{display:flex;gap:.5rem;align-items:baseline;color:var(--muted);text-decoration:none;padding:.28rem .5rem;border-radius:4px}
+.side a:hover{color:var(--ink);background:var(--tchelet-soft)}
+.side a.ch{color:var(--ink);font-weight:500;margin-top:.2rem}
+.side ul{margin:.1rem 0 .3rem 1.1rem;border-left:1px solid var(--line)}
+.side ul a{font-size:.8rem;padding:.18rem .5rem}
+.side .num{color:var(--gold);font-variant-numeric:tabular-nums;min-width:1.1rem;font-size:.78rem}
+.side a.active{color:var(--tchelet);background:var(--tchelet-soft);font-weight:600}
+@media (max-width:960px){
+  .layout{display:block}
+  .layout .wrap{margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px))}
+  .side{position:fixed;inset:0 auto 0 0;width:min(20rem,86vw);max-height:none;z-index:30;transform:translateX(-105%);transition:transform .2s ease;box-shadow:0 0 24px rgba(0,0,0,.25);padding-top:calc(env(safe-area-inset-top,0px) + 1rem)}
+  .side.open{transform:none}
+  .side-close{display:block;background:none;border:0;font-size:1.6rem;line-height:1;color:var(--ink);cursor:pointer;padding:.2rem .5rem}
+  .side-open{display:block;position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:25;font-family:var(--ui);font-weight:500;font-size:.9rem;padding:.6rem 1rem;border-radius:99px;border:0;background:var(--tchelet);color:var(--paper);box-shadow:0 4px 14px rgba(0,0,0,.2);cursor:pointer}
+}
+@media (prefers-reduced-motion:reduce){.side{transition:none}}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+[id]{scroll-margin-top:1rem}
 a{color:var(--tchelet)}
 a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 @media (max-width:480px){.cover .heb-title{font-size:2.6rem}.cover h1{font-size:1.9rem}.heb{font-size:1.45rem}}
 </style>
 
-<div class="wrap">
+<div class="layout">
+<aside class="side" id="indice" aria-label="Índice">
+  <div class="side-head"><span class="eyebrow">Índice</span><button type="button" class="side-close" id="side-close" aria-label="Fechar índice">×</button></div>
+  <ol class="side-list">
+    <li><a href="#capa" class="ch"><span class="num"></span>Capa</a></li>
+    <li><a href="#leitura" class="ch"><span class="num">0</span>Como ler as transliterações</a></li>
+    <li><a href="#cap1" class="ch"><span class="num">1</span>O que é a Amidá</a></li>
+    <li><a href="#cap2" class="ch"><span class="num">2</span>Como rezar</a></li>
+    <li><a href="#cap3" class="ch"><span class="num">3</span>As 19 bênçãos</a><ul class="bl"><li><a href="#b1"><span class="num">1</span>Avot</a></li><li><a href="#b2"><span class="num">2</span>Guevurot</a></li><li><a href="#b3"><span class="num">3</span>Kedushat Hashem</a></li><li><a href="#b4"><span class="num">4</span>Dáat</a></li><li><a href="#b5"><span class="num">5</span>Teshuvá</a></li><li><a href="#b6"><span class="num">6</span>Selichá</a></li><li><a href="#b7"><span class="num">7</span>Gueulá</a></li><li><a href="#b8"><span class="num">8</span>Refuá</a></li><li><a href="#b9"><span class="num">9</span>Birkat HaShanim</a></li><li><a href="#b10"><span class="num">10</span>Kibuts Galuyot</a></li><li><a href="#b11"><span class="num">11</span>Din</a></li><li><a href="#b12"><span class="num">12</span>Birkat HaMinim</a></li><li><a href="#b13"><span class="num">13</span>Tsadikim</a></li><li><a href="#b14"><span class="num">14</span>Binyan Yerushaláyim</a></li><li><a href="#b15"><span class="num">15</span>Malchut David</a></li><li><a href="#b16"><span class="num">16</span>Shomêa Tefilá</a></li><li><a href="#b17"><span class="num">17</span>Avodá</a></li><li><a href="#b18"><span class="num">18</span>Hodaá (Modim)</a></li><li><a href="#b19"><span class="num">19</span>Shalom</a></li><li><a href="#b20"><span class="num">·</span>Elohai Netsor</a></li></ul></li>
+    <li><a href="#cap4" class="ch"><span class="num">4</span>Minian</a><ul><li><a href="#kedusha">Kedushá</a></li><li><a href="#modimderabanan">Modim deRabanan</a></li><li><a href="#birkatcohanim">Birkat Cohanim</a></li></ul></li>
+    <li><a href="#cap5" class="ch"><span class="num">5</span>As rezas do dia</a></li>
+    <li><a href="#cap6" class="ch"><span class="num">6</span>Variações do ano</a><ul><li><a href="#yaale">Yaalê veyavô</a></li><li><a href="#alhanissim">Al hanissim</a></li><li><a href="#anenu">Anênu</a></li></ul></li>
+    <li><a href="#cap7" class="ch"><span class="num">7</span>E se eu errar?</a></li>
+    <li><a href="#cap8" class="ch"><span class="num">8</span>Shabat e festas</a></li>
+    <li><a href="#fontes" class="ch"><span class="num"></span>Fontes</a></li>
+  </ol>
+</aside>
+<button type="button" class="side-open" id="side-open" aria-controls="indice" aria-expanded="false">Índice</button>
+<main class="wrap">
 
-<header class="cover">
+<header class="cover" id="capa">
   <p class="heb-title">תְּפִלַּת הָעֲמִידָה</p>
   <div class="eyebrow">Livro de estudo · Nusach Edot HaMizrach</div>
   <h1>Aprendendo a Amidá</h1>
@@ -760,7 +804,7 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
   <h3>Durante a repetição</h3>
   <p>Quando o chazan diz "Baruch atá Adonai", responde-se <strong>"Baruch hu uvaruch shemo"</strong> ("Bendito seja Ele e bendito seja o Seu Nome"). No fim de cada bênção, responde-se <strong>"Amen"</strong>, que quer dizer "é verdade" e confirma o que foi dito.</p>
 
-  <h3>A Kedushá <span class="mn" title="Só se diz com minian">Só com minian</span></h3>
+  <h3 id="kedusha">A Kedushá <span class="mn" title="Só se diz com minian">Só com minian</span></h3>
   <p>Na terceira bênção, o chazan e a congregação dizem juntos as palavras dos anjos. Fica-se de pé, com os pés juntos, como na Amidá. É costume erguer-se na ponta dos pés três vezes ao dizer "Kadosh, kadosh, kadosh", como quem se eleva em direção ao céu.</p>
   <div class="prayer">
     <div><div class="lbl">Hebraico</div><p class="heb">נַקְדִּישָׁךְ וְנַעֲרִיצָךְ, כְּנֹֽעַם שִֽׂיחַ סוֹד שַׂרְפֵי קֹֽדֶשׁ, הַמְשַׁלְּשִׁים לְךָ קְדֻשָּׁה, וְכֵן כָּתוּב עַל יַד נְבִיאָךְ: וְקָרָא זֶה אֶל־זֶה וְאָמַר: קָדוֹשׁ קָדוֹשׁ קָדוֹשׁ יְהֹוָה צְבָאוֹת, מְלֹא כָל־הָאָרֶץ כְּבוֹדוֹ. לְעֻמָּתָם מְשַׁבְּחִים וְאוֹמְרִים: בָּרוּךְ כְּבוֹד־יְהֹוָה מִמְּקוֹמוֹ. וּבְדִבְרֵי קָדְשָׁךְ כָּתוּב לֵאמֹר: יִמְלֹךְ יְהֹוָה לְעוֹלָם, אֱלֹהַיִךְ צִיּוֹן לְדֹר וָדֹר, הַלְלוּיָהּ:</p></div>
@@ -769,7 +813,7 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
     <div class="var"><strong>No Mussaf de Shabat e das festas,</strong> a Kedushá sefaradi começa com outras palavras, "Kéter yitenu lechá", "uma coroa Te darão", mas os três versículos são os mesmos.</div>
   </div>
 
-  <h3>Modim deRabanan <span class="mn" title="Só se diz com minian">Só com minian</span></h3>
+  <h3 id="modimderabanan">Modim deRabanan <span class="mn" title="Só se diz com minian">Só com minian</span></h3>
   <p>Quando o chazan chega a Modim, a congregação se curva e diz em voz baixa um agradecimento próprio. Pedir pode ser feito por meio de um representante, mas agradecer cada um precisa fazer por si (Sotá 40a; Orach Chayim 127:1).</p>
   <div class="prayer">
     <div><div class="lbl">Hebraico</div><p class="heb">מוֹדִים אֲנַחְנוּ לָךְ, שֶׁאַתָּה הוּא יְהֹוָה אֱלֹהֵינוּ וֵאלֹהֵי אֲבוֹתֵינוּ, אֱלֹהֵי כָל בָּשָׂר, יוֹצְרֵנוּ יוֹצֵר בְּרֵאשִׁית. בְּרָכוֹת וְהוֹדָאוֹת לְשִׁמְךָ הַגָּדוֹל וְהַקָּדוֹשׁ, עַל שֶׁהֶחֱיִיתָנוּ וְקִיַּמְתָּנוּ. כֵּן תְּחַיֵּנוּ וּתְחָנֵּנוּ וְתֶאֱסוֹף גָּלֻיּוֹתֵינוּ לְחַצְרוֹת קָדְשֶׁךָ, לִשְׁמֹר חֻקֶּיךָ וְלַעֲשׂוֹת רְצוֹנְךָ וּלְעָבְדְךָ בְלֵבָב שָׁלֵם, עַל שֶׁאֲנַחְנוּ מוֹדִים לָךְ. בָּרוּךְ אֵל הַהוֹדָאוֹת:</p></div>
@@ -777,7 +821,7 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
     <div><div class="lbl">Tradução</div><p class="transl">Nós Te agradecemos, porque Tu és Adonai, nosso D'us e D'us de nossos pais, D'us de toda criatura, nosso Criador e Criador do princípio. Bênçãos e agradecimentos ao Teu grande e santo Nome, por nos teres dado vida e nos teres sustentado. Assim continua a nos dar vida e graça, e reúne os nossos exilados nos átrios do Teu santuário, para guardar as Tuas leis, fazer a Tua vontade e servir-Te de todo o coração, porque nós Te agradecemos. Bendito seja o D'us dos agradecimentos.</p></div>
   </div>
 
-  <h3>Birkat Cohanim: a bênção dos sacerdotes <span class="mn" title="Só se diz com minian">Só com minian</span></h3>
+  <h3 id="birkatcohanim">Birkat Cohanim: a bênção dos sacerdotes <span class="mn" title="Só se diz com minian">Só com minian</span></h3>
   <p>Na repetição de Shacharit, antes da última bênção, os cohanim, descendentes de Aharon, sobem à frente da sinagoga, cobrem-se com o talit, estendem as mãos e abençoam a congregação com as palavras da Torá (Bamidbar 6:24–26). Nas comunidades sefaradim isso acontece <strong>todos os dias</strong>, também fora de Israel. Nas comunidades ashkenazim da Diáspora, só nas festas.</p>
   <p>Durante a bênção, a congregação fica de frente para os cohanim, em silêncio, sem olhar para as suas mãos, e responde "Amen" depois de cada verso.</p>
   <div class="prayer">
@@ -988,7 +1032,7 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 </section>
 
 
-<section aria-labelledby="h-src">
+<section id="fontes" aria-labelledby="h-src">
   <div class="eyebrow">Fontes</div>
   <h3 id="h-src" style="margin-top:0">De onde vem este conteúdo</h3>
   <ul class="sources">
@@ -1001,4 +1045,26 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
   </ul>
 </section>
 
+</main>
 </div>
+
+<script>
+(function(){
+  var side=document.getElementById('indice'),openB=document.getElementById('side-open'),closeB=document.getElementById('side-close');
+  function setOpen(v){side.classList.toggle('open',v);openB.setAttribute('aria-expanded',v?'true':'false');}
+  openB.addEventListener('click',function(){setOpen(true)});
+  closeB.addEventListener('click',function(){setOpen(false)});
+  side.addEventListener('click',function(e){if(e.target.closest('a'))setOpen(false)});
+  var links=[].slice.call(side.querySelectorAll('a[href^="#"]'));
+  var targets=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1))});
+  function spy(){
+    var y=window.scrollY+window.innerHeight*0.25,idx=0;
+    targets.forEach(function(t,i){if(t&&t.getBoundingClientRect().top+window.scrollY<=y)idx=i});
+    links.forEach(function(a,i){a.classList.toggle('active',i===idx)});
+    var a=links[idx];
+    if(a&&window.innerWidth>960){var r=a.getBoundingClientRect(),s=side.getBoundingClientRect();if(r.top<s.top+40||r.bottom>s.bottom-40)a.scrollIntoView({block:'nearest'});}
+  }
+  var raf=0;window.addEventListener('scroll',function(){if(!raf)raf=requestAnimationFrame(function(){raf=0;spy()})},{passive:true});
+  spy();
+})();
+</script>
